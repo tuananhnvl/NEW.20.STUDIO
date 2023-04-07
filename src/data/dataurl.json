@@ -1,0 +1,32 @@
+{
+    "urlname": [
+      {
+        "patch": "/",
+        "name": "20 Studio"
+      },
+      {
+        "patch": "/aboutus",
+        "name": "About us"
+      },
+      {
+        "patch": "/sampledev",
+        "name": "Sample Dev"
+      },
+      {
+        "patch": "/products",
+        "name": "Products"
+      },
+      {
+        "patch": "/patternmaking",
+        "name": "Pattern Making"
+      },
+      {
+        "patch": "/gallery",
+        "name": "Gallery"
+      },
+      {
+        "patch": "/contact",
+        "name": "Contact"
+      }
+    ]
+}

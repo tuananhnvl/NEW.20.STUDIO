@@ -1,0 +1,27 @@
+#transition-section {
+  position:fixed;
+  width:100vw;
+  height:100vh;
+  background:#1E1E1E;
+/*  background:white; */
+  z-index:9999999 !important;
+  opacity: var(--opacity);
+  pointer-events:none;
+
+  --opacity: 0;
+  --size:0%;
+  --posX: 0%;
+  --posY: 0%;
+  clip-path: circle(var(--size) at var(--posX) var(--posY));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  cursor:pointer;
+}
+#transition-section h2 {
+  font-family:"Marcellus";
+  font-size:5rem;
+  color:white;
+}
