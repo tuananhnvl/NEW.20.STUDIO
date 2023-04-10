@@ -361,7 +361,9 @@ class TrackballControls extends EventDispatcher {
 					scope.dispatchEvent( _changeEvent );
 
 					lastPosition.copy( scope.object.position );
-
+					//console.log(lastPosition.z)
+					/// scrollPP
+					localStorage.setItem('scrollPP', lastPosition.z)
 				}
 
 			} else if ( scope.object.isOrthographicCamera ) {

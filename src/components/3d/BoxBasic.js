@@ -1,33 +1,59 @@
-import React,{useEffect, useRef} from 'react'
-import { useFrame } from '@react-three/fiber'
+import React,{useEffect,useState, useRef,useContext} from 'react'
+import { useFrame,useThree } from '@react-three/fiber'
+import * as THREE from 'three';
 import gsap from 'gsap'
-export default function BoxBasic(posSend) {
-  const mesh = useRef(null)
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import VirtualScroll from 'virtual-scroll'
+import DataContext from '../.././App';
+import { useLocation } from 'react-router-dom';
 
-  let posSendFinal = posSend.pos.pos/1000
-  //console.log(posSendFinal)
+export default function BoxBasic() {
+  console.log('==============BoxBasic render================')
+  const groupmesh = useRef(null)
+  const { camera, gl, scene } = useThree();
+  const location = useLocation()
+  const [loadingObj,setLoadingObj] = useState(false)
+  const [actionMove,setActionMove]= useState(false)
   useEffect(() => {
-    gsap.to( mesh.current.position , {
-      y : -posSendFinal,
-      x : posSendFinal,
-      duration:1,
-      overwrite:'auto'
-    })
-  
-  },[mesh,posSend])
+    console.log(groupmesh.current.children)
+    setLoadingObj(true)
+
+  },[groupmesh])
+  useEffect(() => {
+    console.log(location)
+    console.log(`location on Mesh :::: ${location.pathname}`)
+    setActionMove(true)
+  },[location])
   useFrame(() => {
-    mesh.current.rotation.x += 0.005
-    mesh.current.rotation.y += 0.005
-   
+    if(loadingObj === true && actionMove === true && location.pathname !== '/gallery') {
+      let posCurLoco = (localStorage.getItem('scrollPosCre'))/100
+      console.log(posCurLoco/10)
+      groupmesh.current.children[0].position.setFromSphericalCoords(3, posCurLoco/6 , posCurLoco/6);
+      groupmesh.current.children[1].position.setFromSphericalCoords(4, posCurLoco/6, 1 -3);
+      groupmesh.current.children[0].scale.set(posCurLoco/10,posCurLoco/10,posCurLoco/10)
+      groupmesh.current.children[1].scale.set(posCurLoco/10,posCurLoco/10,posCurLoco/10)
+      groupmesh.current.children[0].rotation.y = -posCurLoco
+      groupmesh.current.children[0].rotation.x = posCurLoco
+
+      groupmesh.current.children[1].rotation.y = -posCurLoco
+      groupmesh.current.children[1].rotation.x = posCurLoco
+
+    }
+    
   })
   
   return (
-   
-    <mesh ref={mesh} >
-    <boxGeometry attach="geometry" args={[1, 1, 1]} />
-    <meshNormalMaterial attach="material" />
-  </mesh>
-  
+    <group ref={groupmesh}>
+      <mesh >
+      <boxGeometry attach="geometry" args={[1, 1, 1]} />
+      <meshNormalMaterial attach="material" />
+      </mesh>
+      <mesh >
+        <boxGeometry attach="geometry" args={[1, 1, 1]} />
+        <meshNormalMaterial attach="material" />
+      </mesh>
+    </group>
+ 
   
   )
 }

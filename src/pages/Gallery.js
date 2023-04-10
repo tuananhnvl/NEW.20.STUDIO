@@ -10,7 +10,7 @@ import { Scene, Vector2, Vector3 } from 'three';
 import DemoImg from '../components/3d/DemoImg';
 import debounce from 'lodash/debounce';
 
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import VirtualScroll from 'virtual-scroll';
 
 extend({ TrackballControls })
 
@@ -43,8 +43,9 @@ function TrackballControlsComponent() {
   const MED_VIEW = 160
   const CAM_VIEW_Z = 150
 
+  const [actionAnime,setActionAnime] = useState(false)
   useEffect(() => {
-    const controls = new TrackballControls(camera, gl.domElement,scene.children[1]);
+    const controls = new TrackballControls(camera, gl.domElement);
     controlsRef.current = controls;
    
     return () => {
@@ -60,40 +61,46 @@ function TrackballControlsComponent() {
     controlsRef.current.object.position.set(0, 0, CAM_VIEW_Z);
     controlsRef.current.noRotate = true
     controlsRef.current.noPan = true
-   // controlsRef.current.noZoom = true
-    controlsRef.current.zoomSpeed = 0.2
+  // controlsRef.current.noZoom = true
+    controlsRef.current.zoomSpeed = 0.5
     controlsRef.current.maxDistance = CAM_VIEW_Z + 100
    controlsRef.current.minDistance = 95
     controlsRef.current.dynamicDampingFactor = 0.092
+ //   setActionAnime(true)
   },[controlsRef,scene])
 
   
 
   useEffect(() => {
-  //  console.log(scene.children[1])
-   
+  console.log(scene.children[1])
+  console.log(scene.children[1].children)
   },[controlsRef,scene])
 
-
+  let oldPos
   useFrame(() => {
     if (controlsRef.current) {
-      const zoomLevel = controlsRef.current.object.position.z - 150;
-      
-     // scene.children[1].position.z = zoomLevel
+     
+ //     console.log(localStorage.getItem('scrollPP'))
+      let sp = localStorage.getItem('scrollPP')
+   //   console.log(sp)
+     // scene.children[1].position.z = (controlsRef.current.object.position.z) - 200
+       //console.log(gr.position.z)
+     scene.children[1].children[27].position.z +=sp/100
       controlsRef.current.update();
     }
    
   });
 
-
+  function lerp (start, end, amt){
+    return (1-amt)*start+amt*end
+  }
  
   return null;
 }
 export default function Gallery() {
   return (
-    <>
-      <div >
-        <section style={{ backgroundColor: "#1E1E1E", width: "100vw", height: "100vh" }}>
+    
+        <div style={{ backgroundColor: "#1E1E1E", width: "100vw", height: "100vh" }}>
         <Canvas
             gl={{ antialias: true }}
             onCreated={({ gl }) => (gl.gammaFactor = 2.2, gl.outputEncoding = THREE.sRGBEncoding)}
@@ -104,10 +111,9 @@ export default function Gallery() {
             <TrackballControlsComponent/>
             
           </Canvas>
-        </section>
-      </div>
-
-
-    </>
+        </div>
+      
+       
+    
   )
 }

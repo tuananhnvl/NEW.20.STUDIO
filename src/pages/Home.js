@@ -12,7 +12,7 @@ import GalleryinPage from '../components/GalleryinPage';
 import SliderPartners from '../components/SliderPartners';
 import Contact from '../components/Contact';
 import IntroVid from '../components/IntroVid';
-import { useLocomotiveScroll } from 'react-locomotive-scroll'
+import useLocoScroll from '.././hooks/useLocoScroll';
 
 import img01 from '../asset/img.png'
 import { AiOutlineArrowRight } from 'react-icons/ai';
@@ -29,7 +29,9 @@ const images = {
 };
 
 
-export default function Home() {
+ function Home() {
+  console.log('==============Home render================')
+ // useLocoScroll(true)
   const { redirectPage } = usePageTransition();
   const [offTask, setOffTask] = useState(false)
   const listStickerSpace = document.querySelectorAll('.stickerSpace')
@@ -41,10 +43,8 @@ export default function Home() {
     `<span>creaticity</span>`
   ]
 
-
- 
   useEffect(() => {
-  
+   
     if (listStickerSpace.length > 2) {
       for (let y = 0; y < 5; y++) {
         // console.log(y)
@@ -59,6 +59,7 @@ export default function Home() {
  
 
   useEffect(()=>{
+  
     gsap.fromTo(contentHeroSection.current,{
     
       opacity:0,
@@ -74,7 +75,7 @@ export default function Home() {
   return (
     <>
 
-      <section  data-scroll-section className='warpper-homepage'  >
+      <section  data-scroll-section className='containerScroll'>
         <div className='hero-section' > 
          
           <div className='text' ref={contentHeroSection} >
@@ -83,7 +84,7 @@ export default function Home() {
          
           </div>
         </div>
-        <div className='clipwelcome-section' data-scroll-container>
+        <div className='clipwelcome-section' >
           <div className='text'>
             <span >REEL</span>
           </div>
@@ -91,7 +92,7 @@ export default function Home() {
             <img src={images.image3} alt='' />
           </div>
         </div>
-        <div className='servcies_home-section' data-scroll-container >
+        <div className='servcies_home-section' >
           <div className='title'>
             <h2>Servcies</h2>
           </div>
@@ -107,7 +108,7 @@ export default function Home() {
             <a><span id='products_servcies'>Production</span></a>
           </div>
         </div>
-        <div className='passion-section' data-scroll-container>
+        <div className='passion-section'>
           <div className='content'>
             <div className='text'>with craftmentship, creativity and love, we turn our client’s ideas into peice of art</div>
             <div className='img'><img src={images.image4} alt='' /></div>
@@ -132,3 +133,6 @@ export default function Home() {
     </>
   )
 }
+
+
+export default  Home

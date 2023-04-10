@@ -124,15 +124,7 @@ export default function PlaneGeo() {
 
     }, [])
 
-    useFrame(({ clock }) => {
-        /*  meshRef.current.children.forEach(child => {
-             if (child.material.type === "ShaderMaterial") {
-                 child.material.uniforms.uTime.value = clock.getElapsedTime();
-             }
-         }); */
 
-
-    });
 
 
     useEffect(() => {
@@ -165,7 +157,7 @@ export default function PlaneGeo() {
 
     return (
         <>
-            <group ref={meshRef}>
+            <group ref={meshRef}  onWheel={(e) => console.log('wheel spins')}>
                 {targets}
             </group>
         </>

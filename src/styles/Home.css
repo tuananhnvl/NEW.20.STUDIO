@@ -1,5 +1,15 @@
-.warpper-homepage > div:nth-child(n+2) {
-    
+
+.box-demo-full {
+    position: relative;
+    width: 100vw;
+
+    height: 100vh;
+    border: 2px solid green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size: 5rem;
 }
 .pin-menu {
     position: absolute;

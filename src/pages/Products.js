@@ -24,10 +24,11 @@ const images = {
 
 gsap.registerPlugin(CSSRulePlugin, MotionPathPlugin);
 export default function Products() {
-
+    console.log('==============Products render================')
+  //useLocoScroll(true)
     const { redirectPage } = usePageTransition();
     const [offTask,setOffTask] = useState(false)
-  
+    
     useEffect(() => {
         if(!offTask) {return}
         let targets = gsap.utils.toArray('.box-trans');
@@ -122,7 +123,7 @@ export default function Products() {
 
 
     return (
-        <section className='container' data-scroll-section>
+        <section data-scroll-section className='containerScroll'>
              <div className='pin-menu'>
                     <a value='/' onClick={redirectPage}>Home</a>
                         <a value='/sampledev' onClick={redirectPage}>Sample Dev</a>

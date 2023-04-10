@@ -102,8 +102,7 @@
     position:relative;
     width:var(--maxW);
     margin: 0 auto;
-   
-    padding-bottom: 30vh;
+  
 }
 .dev_product--bannersub a.sub {
     display: flex;
@@ -151,13 +150,14 @@
  /* list step */
 .wapper-step-dev_product {
     width:100%;
-    height:auto;
+    height:400vh;
 }
 
 .steps-dev_products {
-    margin: 45vh auto;
+    
     position:relative;
-
+    height: 100vh;
+    overflow: hidden;
     
 
 }
@@ -273,10 +273,7 @@
     height:auto;
 }
 /* step 2 */
-.step2-dev_products {
-    min-height: 600px;
-    margin: 40vh auto 90vh auto;
-}
+
 
 
 .step2-dev_products .img {

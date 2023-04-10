@@ -1,4 +1,4 @@
-import React, { useRef, useState, Fragment, useEffect, Suspense, useCallback } from 'react'
+import React, { useRef,useContext, useState, Fragment, useEffect, Suspense, useCallback,useLayoutEffect  } from 'react'
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
 import GlobalProduct3D from '.././components/3d/GlobalProduct3D'
 import * as THREE from 'three';
@@ -16,15 +16,92 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import myFont from '.././fonts/PoiretOne.json'
 import { useLocomotiveScroll } from 'react-locomotive-scroll'
 import VirtualScroll from 'virtual-scroll'
+import DataContext from '.././hooks/DataContext';
+
 extend({ TextGeometry })
+
 function ControlEnv() {
     const location = useLocation()
-
-  
-  
     const { camera, gl, scene } = useThree();
     const controlsRef = useRef();
   
+   
+
+
+
+    return null;    
+}
+
+function Text() {
+    const location = useLocation()
+    const font = new FontLoader().parse(myFont);
+    const meshText = useRef(null)
+    const SPEED_TEXT = 50
+    const centerText = new THREE.Vector3();
+    const [actionMove,setActionMove]= useState(false)
+    useEffect(() => {
+        console.log(meshText.current)
+     
+        //calc mesh.geo size , not apply to gr ( total each or ... )
+        meshText.current.geometry.computeBoundingBox()
+        let posUnFormat = meshText.current.geometry.boundingBox;
+        // get size from posUnFormat 
+        let w = posUnFormat.max.x - posUnFormat .min.x;
+        let h = posUnFormat.max.y - posUnFormat.min.y;
+        let d = posUnFormat.max.z - posUnFormat.min.z;
+       // meshText.current.position.set(-w/2,-h/2,-d/2) // center
+        meshText.current.geometry.boundingBox.getCenter(centerText);
+        meshText.current.geometry.center(); // set center transfrom
+        
+      
+
+        
+    },[meshText])
+    useFrame(() => {
+        if(location.pathname !== '/gallery') {
+            let posCurLoco = (localStorage.getItem('scrollPosCre'))/1000
+            //  meshText.current.position.x = -(posCurLoco/2 +2.85)
+            //  meshText.current.position.z = (posCurLoco/2  +0.5)
+            let forMeshText = posCurLoco/100
+          console.log(meshText.current.position)
+          meshText.current.position.x = -posCurLoco
+          meshText.current.position.z = posCurLoco
+            meshText.current.rotation.y = (forMeshText * SPEED_TEXT)
+        }
+ 
+    })
+    return (
+        <mesh ref={meshText}>
+            <textGeometry args={['20 STUDIO', { font , size: 1, height: 0.25}]} />
+            <meshBasicMaterial attach='material' color={'blue'} />
+        </mesh>
+    )
+}
+function CanvasThree() {
+    console.log('==============CanvasThree render================')
+    return (
+
+        <div id='bade-modal'  style={{ backgroundColor: "transparent", width: "100vw", height: '100vh',position:'fixed',pointerEvents:'none' }}>
+          
+            <Canvas
+                gl={{ antialias: true }}
+                onCreated={({ gl }) => (gl.gammaFactor = 2.2, gl.outputEncoding = THREE.sRGBEncoding)}
+            >
+                <axesHelper args={[500, 500, 500]} />
+                <BoxBasic/>
+                <Text />
+               
+                <ControlEnv />
+
+            </Canvas>
+        </div>
+
+    )
+}
+export default React.memo(CanvasThree);
+
+
+/* 
     useEffect(() => {
     
         if (location.pathname == '/') {
@@ -72,39 +149,4 @@ function ControlEnv() {
         }
     }, [location, scene, camera])
 
-
-    return null;
-}
-
-function Text() {
-    const font = new FontLoader().parse(myFont);
-
-    return (
-        <mesh scale={[.2, .2, .2]}>
-            <textGeometry args={['20 STUDIO', { font, size: 3, height: 1 }]} />
-            <meshBasicMaterial attach='material' color={'blue'} />
-        </mesh>
-    )
-}
-export default function CanvasThree(posSend) {
-  
-
-    return (
-
-        <div data-scroll-container  style={{ backgroundColor: "transparent", width: "100vw", height: "100vh", position: "fixed",zIndex:'0' }}>
-
-            <Canvas
-                gl={{ antialias: true }}
-                onCreated={({ gl }) => (gl.gammaFactor = 2.2, gl.outputEncoding = THREE.sRGBEncoding)}
-            >
-                <axesHelper args={[500, 500, 500]} />
-                <BoxBasic pos={posSend}/>
-                <Text />
-               
-                <ControlEnv />
-
-            </Canvas>
-        </div>
-
-    )
-}
+*/

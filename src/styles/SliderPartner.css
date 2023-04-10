@@ -1,5 +1,5 @@
 .wrapper-slider-partners {
-    padding: 3rem 0;
+    height:100vh;
     position: relative;
 }
 .wrapper-slider-partners .heading {
@@ -19,7 +19,7 @@
 .wrapper-slider-partners .item {
     position:relative;
     opacity:.2;
-    height: 70vh;
+    height: 100%;
     background:unset;
     transform:scale(.7);
     transition:all 500ms;

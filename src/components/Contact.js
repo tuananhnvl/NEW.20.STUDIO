@@ -3,7 +3,7 @@ import React from 'react'
 export default function Contact() {
   return (
     <>
-        <div className='contact-section' data-scroll-container>
+        <div className='contact-section' >
                 <div className='title'>
                 <h2>LET’S TALK</h2>
                 </div>

@@ -1,15 +1,17 @@
-import { useLayoutEffect, useState ,useMemo} from 'react';
+import React, { useLayoutEffect } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
-
-
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 const useLocoScroll = (start) => {
-   // const [scrollPosChange,onScrollPosChange] = useState(0)
+  
 
   useLayoutEffect(() => {
     if (!start) return;
 
-    const scrollEl = document.querySelector('.containerScroll');
+    const scrollEl = document.querySelector('.container');
     console.log('========== found scrollEl')
+    console.log(scrollEl.getBoundingClientRect().height)
     console.log(`useLocoScroll start!`)
     
     let locoScroll = new LocomotiveScroll({
@@ -18,14 +20,16 @@ const useLocoScroll = (start) => {
       multiplier: 1.2,
     });
 
+   
+   // ScrollTrigger.addEventListener('refresh', lsUpdate);
+   // ScrollTrigger.refresh();
     console.log(`useLocoScroll complete!`)
-    locoScroll.on('scroll',() => {
-     // console.log(locoScroll.scroll.instance.scroll.y)
-    //  onScrollPosChange(locoScroll.scroll.instance.scroll.y);
-      })
+
     return () => {
       if (locoScroll) {
-    
+        console.log('locoScroll exist')
+       //ScrollTrigger.removeEventListener('refresh', lsUpdate);
+       
         locoScroll.destroy();
         locoScroll = null;
         console.log('locoScroll =>>>> null')
@@ -34,7 +38,7 @@ const useLocoScroll = (start) => {
     
    
   }, [start]);
-//  return  useMemo(() => scrollPosChange, [scrollPosChange]);
+  
 }; 
 
 
