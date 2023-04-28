@@ -2,18 +2,17 @@ import React, { useEffect, useRef, useState } from 'react'
 import '.././styles/Home.css'
 import img01 from '../asset/img.png'
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import Partners from '../components/Partners';
-import Services from '../components/Services';
-import ServicesinPage from '../components/ServicesinPage';
-import GalleryinPage from '../components/GalleryinPage';
-import Contact from '../components/Contact';
+import Partners from '../../components/Partners';
+import Services from '../../components/Services';
+import ServicesinPage from '../../components/ServicesinPage';
+import GalleryinPage from '../../components/GalleryinPage';
+import Contact from '../../components/Contact';
 import gsap from 'gsap'; //hiệu ứng
 import vid1 from '../asset/videos/websites.mp4'
-import useLocoScroll from '.././hooks/useLocoScroll'; //lấy smooth
-import usePageTransition from '.././hooks/usePageTransition';
-import IntroVid from '../components/IntroVid';
-import '.././styles/HomeNew.css'
-import SliderPartners from '../components/SliderPartners';
+import useLocoScroll from '../../hooks/useLocoScroll'; //lấy smooth
+import usePageTransition from '../../hooks/usePageTransition';
+
+import SliderPartners from '../../components/SliderPartners';
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 

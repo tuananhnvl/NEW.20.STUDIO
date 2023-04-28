@@ -19,7 +19,7 @@ export default function BoxGeo() {
   const imageHeight = 300 / numRows;
 
   const positions = [];
-  const uvs = [];
+  const vecBuff = [];
 
   for (let i = 0; i < numImages; i++) {
     const col = i % numCols;
@@ -30,10 +30,10 @@ export default function BoxGeo() {
     positions.push(x + 1 / numCols, y, 0);
     positions.push(x, y + 1 / numRows, 0);
     positions.push(x + 1 / numCols, y + 1 / numRows, 0);
-    uvs.push(col * imageWidth, row * imageHeight);
-    uvs.push((col + 1) * imageWidth, row * imageHeight);
-    uvs.push(col * imageWidth, (row + 1) * imageHeight);
-    uvs.push((col + 1) * imageWidth, (row + 1) * imageHeight);
+    vecBuff.push(col * imageWidth, row * imageHeight);
+    vecBuff.push((col + 1) * imageWidth, row * imageHeight);
+    vecBuff.push(col * imageWidth, (row + 1) * imageHeight);
+    vecBuff.push((col + 1) * imageWidth, (row + 1) * imageHeight);
   }
 
   const geometry = new THREE.BufferGeometry();
@@ -41,15 +41,15 @@ export default function BoxGeo() {
     "position",
     new THREE.Float32BufferAttribute(positions, 3)
   );
-  geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
+  geometry.setAttribute("uv", new THREE.Float32BufferAttribute(vecBuff, 2));
   geometry.setIndex([0, 1, 2, 2, 1, 3]);
 
   const material = new THREE.MeshBasicMaterial({ map: atlas });
   const mesh = useRef();
 
   useEffect(() => {
-    console.log(mesh.current)
-    mesh.current.scale.set(100, 100, 0)
+    console.log(mesh.current.geometry)
+    //mesh.current.scale.set(100, 100, 0)
   },[mesh])
   return (
     <group>

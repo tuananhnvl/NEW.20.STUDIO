@@ -34,7 +34,7 @@
   --random-column: 0;
   --margin-desktop: 64px;
   --maxW1440 : 1440px;
-  --maxW : calc(100vw - 5vw);
+  --maxW : calc(100vw - 7.9vw);
 
   --hero-text:calc(100vw / 9);
 
@@ -183,7 +183,7 @@ a {
   opacity:1;
   position:relative;
   display: grid;
-  max-width:var(--maxW1440);
+  max-width:var(--maxW);
   grid-template-columns: 20% 20% 20% 20% 20%;
   height:100%;
  margin: 0 auto;
@@ -195,7 +195,7 @@ a {
 /* newgird */
 .consuctor--gridsys {
   display:grid;
-  max-width:var(--maxW1440);
+  max-width:var(--maxW);
   grid-template-columns: 20% 20% 20% 20% 20%;
   margin: 0 auto;
   position:relative;
@@ -203,7 +203,7 @@ a {
 
 @media (max-width : 868px) {
   .consuctor--gridsys,.grid-container {
-      max-width:calc(100% - 32px) !important;
+      max-width:calc(100vw - 32px) !important;
       grid-template-columns: 33.333% 33.333% 33.333% !important;
   }
 }
@@ -295,9 +295,7 @@ div.grid-container > div:nth-child(4):after {
   
 
 }
-.contact-section * {
-  color:white !important;
-}
+
 .contact-section .title {
   width: var(--w-grid);
   margin: 0 auto;
@@ -387,9 +385,12 @@ border-bottom: 1px solid white;
   
 
 }
+
 .contact-section .detail form input,
-.contact-section .detail form select {
-  height: 100%;
+.contact-section .detail form select,
+.contact-section .detail form textarea {
+  
+  outline: none;
   border: none !important;
 }
 .contact-section .detail form textarea {
@@ -399,7 +400,15 @@ border-bottom: 1px solid white;
   background:transparent;
   height: 100%;
 }
-
+.contact-section .detail form > div.nor select {
+  font-family: PoiretOne;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 42px;
+  letter-spacing: 0.01em;
+  padding-left: 1rem;
+ 
+}
 .contact-section .detail form > div.spec input {
   border-right: 1px solid white !important;
 }
@@ -407,7 +416,7 @@ border-bottom: 1px solid white;
 .contact-section .detail form > div.nor input[type="text"],
 .contact-section .detail form > div.spec input[type="text"],
 .contact-section .detail form > div.nor a,
-.contact-section .detail form > div.nor select,
+
 .contact-section .detail form > div.nor textarea{
   font-family: PoiretOne;
   font-size: 22px;
@@ -420,7 +429,7 @@ border-bottom: 1px solid white;
 }
 
 .contact-section .detail form > div.nor select option {
-  color:white !important;
+  background: transparent;
 }
 .contact-section .detail form > div.spec {
   display:flex;
@@ -472,10 +481,11 @@ border-bottom: 1px solid white;
 /*  config gallery redirct */
 /* gallery section redriect */
 .gallery-togo  {
-  height: 80vh;
+  height: 100vh;
   position:relative;
   display:flex;
-  margin: 30vh 0;
+ 
+  overflow: hidden;
 }
 .gallery-togo .text-svg {
   width:fit-content;
@@ -488,25 +498,29 @@ border-bottom: 1px solid white;
   transform: translate(-50%,-50%);
 }
 .gallery-togo .text-svg  svg {
-  width: 800px !important;
+  width: 900px !important;
 }
 .gallery-togo .list-img {
-  position:absolute;
+  position:relative;
   width: 100%;
   height: 100%;
-  top:0;
-  left:0;
+
 }
 .gallery-togo .list-img a {
   position: absolute;
   display:block;
-  height:auto;
+  height:fit-content;
+
+  top:50%;
+  left: 50%;
+  overflow: hidden;
   transform: translate(-50%,-50%);
   z-index: 5;
 }
 .gallery-togo .list-img a img {
   width: 100%;
   height: 100%;
+ 
 }
 .gallery-togo .list-img a:before {
   content:"";
@@ -519,37 +533,27 @@ border-bottom: 1px solid white;
   z-index: 10;
 }
 .gallery-togo .list-img a:nth-child(1) {
-  width: 370px;
-  top: 10%;
-  left: 3%;
-
+  width: 25vw;
 }
 .gallery-togo .list-img a:nth-child(2) {
-  width: 310px;
-  top: 59%;
-  left: 20%;
+  width: 12vw;
+
 }
 .gallery-togo .list-img a:nth-child(3) {
   width: 360px;
-  top: -20%;
-  left: 42%;
 
 }
 .gallery-togo .list-img a:nth-child(4) {
   width: 350px;
-  left: 60%;
-  top: 61%;
- 
+
 }
 .gallery-togo .list-img a:nth-child(5) {
   width: 290px;
-  top: 2%;
-  left: 72%;
+
 }
 .gallery-togo .list-img a:nth-child(6) {
   width: 253px;
-  top: 41%;
-  left: 87%;
+
 }
 
 

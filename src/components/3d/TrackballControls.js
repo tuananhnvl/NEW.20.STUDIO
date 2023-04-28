@@ -221,7 +221,7 @@ class TrackballControls extends EventDispatcher {
 				if ( factor !== 1.0 && factor > 0.0 ) {
 
 					if ( scope.object.isPerspectiveCamera ) {
-				
+						//console.log(factor)
 						_eye.multiplyScalar(factor);
 						
 					 	
@@ -248,9 +248,9 @@ class TrackballControls extends EventDispatcher {
 					_zoomStart.copy( _zoomEnd );
 
 				} else {
-				//	console.log(_zoomStart.y)
-					_zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
 				
+					_zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
+				//	console.log(_zoomStart)
 				}
 
 			}
@@ -311,6 +311,7 @@ class TrackballControls extends EventDispatcher {
 
 					scope.object.position.addVectors( scope.target, _eye.setLength( scope.maxDistance ) );
 					_zoomStart.copy( _zoomEnd );
+					
 
 				}
 
@@ -318,7 +319,7 @@ class TrackballControls extends EventDispatcher {
 
 					scope.object.position.addVectors( scope.target, _eye.setLength( scope.minDistance ) );
 					_zoomStart.copy( _zoomEnd );
-
+					
 				}
 
 			}
@@ -628,7 +629,7 @@ class TrackballControls extends EventDispatcher {
 				default:
 					// undefined, 0, assume pixels
 					_zoomStart.y -= event.deltaY * 0.00025;
-					//console.log(event.deltaY * 0.00025)
+					console.log(event.deltaY * 0.00025)
 					break;
 
 			}

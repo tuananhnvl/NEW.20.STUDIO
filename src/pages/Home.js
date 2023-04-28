@@ -3,20 +3,11 @@ import gsap from 'gsap'; //hiệu ứng
 import usePageTransition from '.././hooks/usePageTransition';
 import { Link } from 'react-router-dom';
 import '.././styles/Home.css'
-import '.././styles/HomeNew.css'
 
-import Partners from '../components/Partners';
-import Services from '../components/Services';
-import ServicesinPage from '../components/ServicesinPage';
-import GalleryinPage from '../components/GalleryinPage';
+
 import SliderPartners from '../components/SliderPartners';
 import Contact from '../components/Contact';
-import IntroVid from '../components/IntroVid';
-import useLocoScroll from '.././hooks/useLocoScroll';
 
-import img01 from '../asset/img.png'
-import { AiOutlineArrowRight } from 'react-icons/ai';
-import vid1 from '../asset/videos/websites.mp4'
 const images = {
   image1: require('.././asset/gallery/3.png'),
   image2: require('.././asset/gallery/5.png'),
@@ -31,7 +22,7 @@ const images = {
 
  function Home() {
   console.log('==============Home render================')
- // useLocoScroll(true)
+  
   const { redirectPage } = usePageTransition();
   const [offTask, setOffTask] = useState(false)
   const listStickerSpace = document.querySelectorAll('.stickerSpace')
@@ -44,7 +35,6 @@ const images = {
   ]
 
   useEffect(() => {
-   
     if (listStickerSpace.length > 2) {
       for (let y = 0; y < 5; y++) {
         // console.log(y)
@@ -53,7 +43,6 @@ const images = {
         listStickerSpace[2].innerHTML += `${stickerContext[2]}`
       }
     }
-
 
   }, [listStickerSpace])
  
@@ -72,18 +61,17 @@ const images = {
       duration:1
     })
   },[contentHeroSection])
+
   return (
     <>
-
-      <section  data-scroll-section className='containerScroll'>
+      <section  data-scroll-section className='container'>
         <div className='hero-section' > 
-         
           <div className='text' ref={contentHeroSection} >
             <h2>20 Studio</h2>
             <p>Chúng tôi chuyên cung cấp dịch vụ gia công các mẫu thiết kế</p>
-         
           </div>
         </div>
+   
         <div className='clipwelcome-section' >
           <div className='text'>
             <span >REEL</span>
@@ -125,11 +113,6 @@ const images = {
         <Contact />
 
       </section>
-
-
-
-
-
     </>
   )
 }

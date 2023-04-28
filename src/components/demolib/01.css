@@ -1,0 +1,48 @@
+.partent {
+    width: 100vw;
+
+  
+}
+.partent .title {
+    display: flex;
+    align-items: center;
+    width: 50vw;
+    height:20vh;
+
+    font-size: 4.2rem;
+    line-height: 0;
+    font-weight: bold;
+    padding-left: 2rem;
+    text-transform: uppercase;
+}
+.partent .child {
+    height:90vh;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%
+} 
+.partent .child a {
+    width: 45%;
+    border:1px solid green;
+ 
+    display: block;
+    padding: 2rem 0;
+    overflow: hidden;
+}
+.partent .child a:nth-child(1) {
+    height:650px;
+}
+.partent .child a:nth-child(2) {
+    height:250px;
+}
+.partent .child a:nth-child(3) {
+    height:350px;
+}
+.partent .child a:nth-child(4) {
+    height:500px;
+}
+.partent .child a img {
+    width: 100%;
+    height:100%;
+}

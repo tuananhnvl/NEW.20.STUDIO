@@ -1,13 +1,13 @@
 import React, { useRef, useState, Fragment, useEffect, Suspense } from 'react'
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import GlobalProduct3D from '.././components/3d/GlobalProduct3D'
+import GlobalProduct3D from '../../components/3d/GlobalProduct3D'
 import * as THREE from 'three';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { TrackballControls  } from "three/examples/jsm/controls/TrackballControls";
-import PlaneGeo from '../components/3d/PlaneGeo';
+import PlaneGeo from '../../components/3d/PlaneGeo';
 import gsap, { Power2, Power4 } from 'gsap';
 import { Vector2, Vector3 } from 'three';
-import DemoImg from '../components/3d/DemoImg';
+import DemoImg from '../../components/3d/DemoImg';
 import debounce from 'lodash/debounce';
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";

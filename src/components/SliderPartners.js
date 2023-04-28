@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Scrollbar,Mousewheel} from "swiper";
 import 'swiper/css';
-import '.././styles/SliderPartner.css';
+import '.././styles/compo-slider-partners.css';
 SwiperCore.use([Scrollbar,Mousewheel]);
 const images = {
   image1: require('.././asset/gallery/3.png'),

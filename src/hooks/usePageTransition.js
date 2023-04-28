@@ -9,7 +9,7 @@ const usePageTransition = () => {
   useEffect(() => {
     console.log('usePageTransition running ... ')
     const transitiondom = document.querySelector('#transition-section')
-    console.log(transitiondom)
+   // console.log(transitiondom)
     const styletransitiondom = window.getComputedStyle(transitiondom);
 
     if (parseFloat(styletransitiondom.getPropertyValue('--opacity')) === null || parseFloat(styletransitiondom.getPropertyValue('--opacity')) === 0) {

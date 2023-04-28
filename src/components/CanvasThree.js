@@ -24,8 +24,62 @@ function ControlEnv() {
     const location = useLocation()
     const { camera, gl, scene } = useThree();
     const controlsRef = useRef();
-  
    
+
+    useEffect(() => {
+    
+        if (location.pathname == '/') {
+            localStorage.setItem('scrollPosCre', 0);
+            localStorage.setItem('countAction', 0);
+            gsap.timeline({ overwrite: "auto" })
+                .to(scene.children[1].position, {
+                    x:4,
+                    y:1,
+                    ease: Power2.easeOut,
+                    duration: 3
+                })
+                .to(scene.children[1].rotation, {
+                    x: -6,
+                    y: 3,
+                    ease: Power2.easeOut,
+                    duration: 3
+                },"<")
+              
+        } else if (location.pathname == '/sampledev') {
+            localStorage.setItem('scrollPosCre', 0);
+            localStorage.setItem('countAction', 0);
+            gsap.timeline({ overwrite: "auto" })
+                .to(scene.children[1].position, {
+                    x: -2,
+                    y: -2,
+                    ease: Power2.easeOut,
+                    duration: 2
+                })
+                .to(scene.children[1].rotation, {
+                    x: -1,
+                    y: -1,
+                    ease: Power2.easeOut,
+                    duration: 3
+                },"<")
+            
+        } else if (location.pathname == '/products') {
+            localStorage.setItem('scrollPosCre', 0);
+            localStorage.setItem('countAction', 0);
+            gsap.timeline({ overwrite: "auto" })
+                .to(scene.children[1].position, {
+                    x: 3,
+                    y: -3,
+                    ease: Power2.easeOut,
+                    duration: 3
+                })
+                .to(scene.children[1].rotation, {
+                    x: 11,
+                    y: 11,
+                    ease: Power2.easeOut,
+                    duration: 3
+                },"<")
+        }
+    }, [location])
 
 
 
@@ -40,7 +94,7 @@ function Text() {
     const centerText = new THREE.Vector3();
     const [actionMove,setActionMove]= useState(false)
     useEffect(() => {
-        console.log(meshText.current)
+       // console.log(meshText.current)
      
         //calc mesh.geo size , not apply to gr ( total each or ... )
         meshText.current.geometry.computeBoundingBox()
@@ -58,16 +112,16 @@ function Text() {
         
     },[meshText])
     useFrame(() => {
-        if(location.pathname !== '/gallery') {
+       /*  if(location.pathname !== '/gallery') {
             let posCurLoco = (localStorage.getItem('scrollPosCre'))/1000
             //  meshText.current.position.x = -(posCurLoco/2 +2.85)
             //  meshText.current.position.z = (posCurLoco/2  +0.5)
             let forMeshText = posCurLoco/100
-          console.log(meshText.current.position)
+         // console.log(meshText.current.position)
           meshText.current.position.x = -posCurLoco
           meshText.current.position.z = posCurLoco
             meshText.current.rotation.y = (forMeshText * SPEED_TEXT)
-        }
+        } */
  
     })
     return (
@@ -77,8 +131,11 @@ function Text() {
         </mesh>
     )
 }
-function CanvasThree() {
+function CanvasThree(url) {
     console.log('==============CanvasThree render================')
+    console.log(url)
+   
+  
     return (
 
         <div id='bade-modal'  style={{ backgroundColor: "transparent", width: "100vw", height: '100vh',position:'fixed',pointerEvents:'none' }}>
@@ -102,51 +159,6 @@ export default React.memo(CanvasThree);
 
 
 /* 
-    useEffect(() => {
-    
-        if (location.pathname == '/') {
 
-            gsap.timeline({ overwrite: "auto" })
-                .to(scene.children[1].position, {
-                    x: 0,
-                    y: 0,
-                    ease: Power2.easeOut,
-                    duration: 3
-                }).to(scene.children[2].position, {
-                    x: -4,
-                    y: -3,
-                    ease: Power2.easeOut,
-                    duration: 3
-                }, "<")
-        } else if (location.pathname == '/sampledev') {
-
-            gsap.timeline({ overwrite: "auto" })
-                .to(scene.children[1].position, {
-                    x: -3,
-                    y: -3,
-                    ease: Power2.easeOut,
-                    duration: 3
-                }).to(scene.children[2].position, {
-                    x: 3,
-                    y: 3,
-                    ease: Power2.easeOut,
-                    duration: 3
-                }, "<")
-        } else if (location.pathname == '/products') {
-
-            gsap.timeline({ overwrite: "auto" })
-                .to(scene.children[1].position, {
-                    x: 3,
-                    y: -3,
-                    ease: Power2.easeOut,
-                    duration: 3
-                }).to(scene.children[2].position, {
-                    x: 0,
-                    y: -4,
-                    ease: Power2.easeOut,
-                    duration: 3
-                }, "<")
-        }
-    }, [location, scene, camera])
 
 */

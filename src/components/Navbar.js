@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
-import "../styles/Navbar.css";
+import React, { useRef, useState,useEffect } from "react";
+import "../styles/compo-navbar.css";
 import { SlMenu } from "react-icons/sl";
-import { Link} from "react-router-dom";
+import { Link,useLocation} from "react-router-dom";
 
 import gsap from "gsap";
 import LoadingPage from '.././components/LoadingPage';
@@ -12,6 +12,7 @@ import logoSm from "../asset/20-studio-white-sm.png"
 
 export default function Navbar() {
   gsap.registerPlugin(CSSRulePlugin)
+  const location = useLocation();
   const navDom = useRef(null);
   const bgNav = useRef(null);
   const navItem = useRef(null);
@@ -25,82 +26,96 @@ export default function Navbar() {
     let isAnimating = false;
     let animation;
     if (!isNavOpen) {
-      console.log('run nav')
-    
+      console.log('-- Navbar open!...')
       animation = gsap.timeline({})
-        .to(
-          navDom.current,
-          {
-            opacity: 1,
-            pointerEvents: "auto"
-          }
-        )
-        .add("startNavOpen")
-        .fromTo([bgNav.current.children[0]],
-          { 
-            xPercent: 100, 
-            duration: 0,
-           
-          }, { 
-            xPercent: 0, 
-          duration: 1,
-          ease: "power3.inOut",
-        },"startNavOpen")
-        .fromTo([bgNav.current.children[1]],
-          { 
-            xPercent: -100, 
-            duration: 0,
-           
-          }, { 
-            xPercent: 0, 
-          duration: 1,
-          ease: "power3.inOut",
-        },"<")
-
-        .to(
-        [
-          navItem.current.children[0].children,
-          navItem.current.children[1].children,
-          navItem.current.children[2].children,
-          navItem.current.children[3].children,
-          navItem.current.children[4].children
-        ],
+      .set(
+        navDom.current,
         {
-          y: 0,
-          duration: 0.5,
-          stagger: 0.2,
-          ease: "ease-in-out",
-        })
-        .to(".imgNavBanner", {
-          opacity:1,
-          delay:.5,
-          duration:.5,
-          ease: "ease-in-out"
-        },"<")
-        .to(infoBotNav.current,{
-          opacity:1,
-          duration:.5
-        },"<")
-        .to(pseudoImgBannerNav, {
-          cssRule: {
-            width: "0%"
-          },
-          duration: .5
-        },"<")
+          opacity: 1,
+          duration:0,
+          
+        }
+      )
+      .add("startNavOpen")
+      .fromTo([bgNav.current.children[0]],
+        { 
+          xPercent: 100, 
+          duration: 0,
+         
+        }, { 
+          xPercent: 0, 
+        duration: 1,
+        ease: "power3.inOut",
+      },"startNavOpen")
+      .fromTo([bgNav.current.children[1]],
+        { 
+          xPercent: -100, 
+          duration: 0,
+         
+        }, { 
+          xPercent: 0, 
+        duration: 1,
+        ease: "power3.inOut",
+      },"<")
+
+      .to(
+      [
+        navItem.current.children[0].children,
+        navItem.current.children[1].children,
+        navItem.current.children[2].children,
+        navItem.current.children[3].children
+      ],
+      {
+        y: 0,
+        duration: 0.5,
+        stagger: 0.2,
+        ease: "ease-in-out",
+      })
+      .to(".imgNavBanner", {
+        opacity:1,
+        delay:.5,
+        duration:.5,
+        ease: "ease-in-out"
+      },"<")
+      
+      .to(infoBotNav.current,{
+        opacity:1,
+        duration:.5
+      },"<")
+      .to(pseudoImgBannerNav, {
+        cssRule: {
+          width: "0%"
+        },
+        duration: .5
+      },"<")
+
+      .set(
+        navDom.current,
+        {
+          pointerEvents: "auto",
+          duration:.2
+        }
+      )
+     
 
 
     } else {
+      console.log('-- Navbar closee!...')
       animation = gsap.timeline({})
+        .set(navDom.current,
+        {
+          duration: 0,
+          pointerEvents: "none",
+        }, "<")
         .to(
           [
             navItem.current.children[0].children,
             navItem.current.children[1].children,
             navItem.current.children[2].children,
-            navItem.current.children[3].children,
-            navItem.current.children[4].children
+            navItem.current.children[3].children
           ],
           {
-            y:100,
+            y:170,
             duration: 0.3,
             stagger: 0.05,
             ease: "ease-in-out",
@@ -121,27 +136,27 @@ export default function Navbar() {
           duration:.5
         },"<")
         .to([bgNav.current.children[0]], {
-          xPercent: -100, // move both child elements to the right
+          xPercent: -100, 
           duration: 1,
-          pointerEvents: "none",
           ease: "power3.inOut",
         })
         .to([bgNav.current.children[1]], {
-          xPercent: 100, // move both child elements to the right
+          xPercent: 100, 
           duration: 1,
-          pointerEvents: "none",
           ease: "power3.inOut",
         },"<")
         .to(navDom.current,
         {
           opacity: 0,
           duration: 0.5,
-          pointerEvents: "none",
+
           ease: "ease-in-out",
         }, "<")
 
     }
+    
 
+  
     setNavOpen(!isNavOpen);
 
     return () => {
@@ -151,6 +166,66 @@ export default function Navbar() {
      
     };
   }
+
+  useEffect(()=>{
+ 
+    if(!isNavOpen) {
+      console.log('-- Navbar closee!...')
+      gsap.timeline({})
+        .set(navDom.current,
+        {
+          duration: 0,
+          pointerEvents: "none",
+        }, "<")
+        .to(
+          [
+            navItem.current.children[0].children,
+            navItem.current.children[1].children,
+            navItem.current.children[2].children,
+            navItem.current.children[3].children
+          ],
+          {
+            y:170,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "ease-in-out",
+          })
+        .to(pseudoImgBannerNav, {
+          cssRule: {
+            width: '100%',
+          },
+          duration: .5
+        }, "<")
+        .to(".imgNavBanner", {
+          opacity:0,
+          duration:.5,
+          ease: "ease-in-out"
+        },"<")
+        .to(infoBotNav.current,{
+          opacity:0,
+          duration:.5
+        },"<")
+        .to([bgNav.current.children[0]], {
+          xPercent: -100, 
+          duration: 1,
+          ease: "power3.inOut",
+        })
+        .to([bgNav.current.children[1]], {
+          xPercent: 100, 
+          duration: 1,
+          ease: "power3.inOut",
+        },"<")
+        .to(navDom.current,
+        {
+          opacity: 0,
+          duration: 0.5,
+
+          ease: "ease-in-out",
+        }, "<")
+    }
+ 
+  },[location])
+  
   function closeNav() {
     setNavOpen(false);
     let animation;
@@ -160,8 +235,7 @@ export default function Navbar() {
         navItem.current.children[0].children,
         navItem.current.children[1].children,
         navItem.current.children[2].children,
-        navItem.current.children[3].children,
-        navItem.current.children[4].children
+        navItem.current.children[3].children
       ],
       {
         y:100,
@@ -181,6 +255,7 @@ export default function Navbar() {
       ease: "ease-in-out"
     },"<")
     .to(infoBotNav.current,{
+       pointerEvents: "none",
       opacity:0,
       duration:.5
     },"<")
@@ -200,7 +275,6 @@ export default function Navbar() {
     {
       opacity: 0,
       duration: 0.5,
-      pointerEvents: "none",
       ease: "ease-in-out",
     }, "<")
 
@@ -226,20 +300,20 @@ export default function Navbar() {
         <div className="detail">
           <div className="list-item">
             <div ref={navItem} className="item-menu">
-              <Link to="/gallery" onClick={closeNav}>
+             {/*  <Link to="/gallery" onClick={closeNav}>
                 <p>Dự án</p>
-              </Link>
+              </Link> */}
               <Link to="/sampledev" onClick={closeNav}>
-                <p>Phát triển thiết kế</p>
+                <p>Phát&nbsp;triển thiết&nbsp;kế</p>
               </Link>
               <Link to="/products" onClick={closeNav}>
-                <p>Sản xuất</p>
+                <p>Sản&nbsp;xuất</p>
               </Link>
               <Link to="/gallery" onClick={closeNav}>
-                <p>Gallery</p>
+                <p>Dự&nbsp;án</p>
               </Link>
               <Link to="/contact" onClick={closeNav}>
-                <p>Liên hệ</p>
+                <p>Liên&nbsp;hệ</p>
               </Link>
  
             </div>

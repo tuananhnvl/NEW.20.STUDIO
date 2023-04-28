@@ -89,23 +89,16 @@
 /* config step products */
 .wrapper-step-product {
     width: 100%;
-    height: auto;
+    height: fit-content;
  
 }
-.step1-products ,
-.step2-products ,
-.step3-products ,
-.step4-products ,
-.step5-products  {
-    margin: 30vh auto;
-}
-.step1-products .img,
+
 .step2-products .img,
 .step3-products .img,
 .step4-products .img,
 .step5-products .img {
     position: relative;
-    height:80vh;
+  
     overflow: hidden;
 }
 .step1-products .text,
@@ -124,10 +117,11 @@
 .step4-products .title,
 .step5-products .title {
     font-family: NVNValky;
-    font-size: 105px;
+    font-size: 48px;
     font-weight: 400;
     line-height: 130%;
     letter-spacing: 0.01em;
+    text-transform: uppercase;
  
 }
 .step1-products .des,
@@ -135,9 +129,9 @@
 .step3-products .des,
 .step4-products .des,
 .step5-products .des {
-    padding: 32px 32px 0 64px;
+ 
     font-family: PoiretOne;
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 170%;
     letter-spacing: 0.01em;
@@ -146,16 +140,19 @@
 }
 /* config each step */
 /* step 1 */
+.step1-products {
+    height:110vh;
+}
 .step1-products .img {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    height: fit-content;
+    grid-column-start: 3;
+    grid-column-end: 6;
+    height: 70vh;
+    overflow: hidden;
 }
 .step1-products .text {
-
-    top:65%;
-    right:0;
-    transform: translateY(-50%);
+    width:40%;
+    left:10%;
+    top: 30vh;
 }
 .step1-products .img img {
     width: 100%;
@@ -166,41 +163,68 @@
     text-align: left;
 }
 /* step 2 */
+.step2-products  {
+    height:150vh;
+}
 .step2-products .img {
-    grid-column-start: 3;
-    grid-column-end: 6;
-    height: fit-content;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    height: 85vh;
 }
 .step2-products .text {
     position: absolute;
     height: fit-content;
-    top:45%;
-    left:0;
-    transform:translateY(-50%);
+    top:40vh;
+    left:50%;
+    width: 35%;
+   
 }
 
 .step2-products .img img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     display: block;
 }
 
 .step2-products .title,.step2-products .des {
-    text-align: right;
+    text-align: left;
+}
+.step2-products .img-behind {
+    position: absolute;
+    background-color: aqua;
+    width: 30%;
+    height: 25vw;
+    bottom:100px;
+    left:60%;
+    overflow: hidden;
+}
+.step2-products .img-behind:before {
+    content:"";
+    position: absolute;
+    top:0;
+    left:0;
+    background: rgb(0,0,0,.69);
+    width: 100%;
+    height: 100%;
+    z-index: 5;
 }
 /*  step 3 */
-
+.step3-products {
+    height:100vh;
+}
 .step3-products .img {
     grid-column-start: 1;
     grid-column-end: 4;
-    height: fit-content;
+    height: 55vh;
 }
 .step3-products .text {
     position: absolute;
+    width: 40%;
     height: fit-content;
-    top:30%;
-    right:0;
-    transform:translateY(-50%);
+    top:50%;
+    left:40%;
+    transform: translateY(-50%);
+  
 }
 
 .step3-products .img img {
@@ -213,54 +237,32 @@
     text-align: left;
 }
 /*  step 4 */
+.step4-products {
+    height:100vh;
+}
 .step4-products .img {
-    grid-column-start: 3;
-    grid-column-end: 6;
-    height: fit-content;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    height: 85vh;
 }
 .step4-products .text {
     position: absolute;
     height: fit-content;
-    top:40%;
-    left:0;
-    transform:translateY(-50%);
+    top:45%;
+    left:50%;
+    width: 40%;
 }
 
 .step4-products .img img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     display: block;
 }
 
 .step4-products .title,.step4-products .des {
-    text-align: right;
-}
-/*  step 5 */
-
-.step5-products .img {
-    grid-column-start: 2;
-    grid-column-end: 4;
-    height: fit-content;
-    
-  
-}
-.step5-products .text {
-    position: absolute;
-    height: fit-content;
-    top:40%;
-    right:0;
-    transform:translateY(-50%);
-}
-
-.step5-products .img img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.step5-products .title,.step5-products .des {
     text-align: left;
 }
+
 
 /* config svg anime demo */
 

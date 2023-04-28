@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useThree, extend, useLoader, useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
-import { shaderMaterial } from "@react-three/drei";
+import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import {useIntersect, shaderMaterial,useScroll,useTexture } from "@react-three/drei";
 import gsap, { Power2 } from "gsap";
 import POS_JSON from './pos.json'
 import glsl from "babel-plugin-glsl/macro";
@@ -12,107 +13,55 @@ const images = {
     image4: require('../.././asset/gallery/b.png'),
     image5: require('../.././asset/gallery/7.jpg')
 };
-const WaveShaderMaterial = shaderMaterial(
-    // Uniform
-    {
-        uTime: 0,
-        //uColor: new THREE.Color(0.0, 0.0, 0.0),
-        uTexture: new THREE.Texture()
-    },
-    // Vertex Shader
-    glsl`
-      precision mediump float;
-   
-      varying vec2 vUv;
-      varying float vWave;
-  
-      uniform float uTime;
-  
-      #pragma glslify: snoise3 = require(glsl-noise/simplex/3d.glsl);
-  
-      void main() {
-        vUv = uv;
-  
-        vec3 pos = position;
-        float noiseFreq = 2.0;
-        float noiseAmp = 0.9;
-        vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);
-        pos.z += snoise3(noisePos) * noiseAmp;
-        vWave = pos.z;
-  
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);  
-      }
-
-
-      
-    `,
-    // Fragment Shader
-    glsl`
-    /*   precision mediump float;
-  
-      uniform vec3 uColor;
-      uniform float uTime;
-      uniform sampler2D uTexture;
-  
-      varying vec2 vUv;
-      varying float vWave;
-  
-      void main() {
-        float wave = vWave * 0.2;
-        vec3 texture = texture2D(uTexture, vUv + wave).rgb;
-        gl_FragColor = vec4(texture, 1.0); 
-      }
- */
-      varying vec2 vUv;
-uniform sampler2D uTexture;
-varying float vWave;
-void main() {
-    float wave = vWave * 0.05;
-  vec3 texture = texture2D(uTexture, vUv ).rgb;
-  gl_FragColor = vec4(texture, 1.);
-}
-    `
-);
-
-extend({ WaveShaderMaterial });
+const imagesarr = [
+  '../.././asset/gallery/3.png',
+  '../.././asset/gallery/5.png',
+  '../.././asset/gallery/8.png',
+  '../.././asset/gallery/b.png',
+  '../.././asset/gallery/7.png',
+];
+//extend({ WaveShaderMaterial });
 
 
 export default function PlaneGeo() {
     // config var
-    const ref = useRef();
+   
     const [targets, setTargets] = useState([]);
-
+    const listMesh = useRef(null)
     const { viewport, scene, mouse } = useThree();
     const meshRef = useRef();
+    const ref = useRef();
     const [active, setActive] = useState(false)
     //config obj
     const SIZE_GROUP = { w: 900, h: 500, z: 0 }
     const W_GEO = 80
+    const [hovered, hover] = useState(false)
 
-    /*  useFrame(({ clock }) => (
-     
-         meshRef.current.children[22].material.uTime = clock.getElapsedTime()
-     )); */
-
+    
     useEffect(() => {
+      if(keyStart == true) {return}
         console.log(POS_JSON)
-
+    
         for (let i = 0; i < POS_JSON.length; i++) {
+         
             let texture = new THREE.TextureLoader().load(images[`image${Math.floor(Math.random() * 5 + 1)}`])
+            // ratio
             let aspectOfPlane = W_GEO / POS_JSON[i].h;
             let aspectOfImage = 644 / 965;
             let yScale = 1;
             let xScale = aspectOfPlane / aspectOfImage;
-            if (xScale > 1) { // it doesn't cover so based on x instead
+            if (xScale > 1) { 
                 xScale = 1;
                 yScale = aspectOfImage / aspectOfPlane;
             }
             texture.repeat.set(xScale, yScale);
             texture.offset.set((1 - xScale) / 2, (1 - yScale) / 2);
             targets.push(
-                <mesh key={Math.random() * 50}
+                <mesh  key={Math.random() * 50}
                     position={[POS_JSON[i].x, POS_JSON[i].y, 0]} // Pos defuat
                     scale={[1, 1, 1]}
+                    ref={ref}
+                     onPointerOver={(e) => handleHoverOn(e)} onPointerOut={(e) => handleHoverOut(e)}
                 >
                     <planeGeometry attach="geometry" args={[W_GEO, POS_JSON[i].h]} />
                     {/*  <waveShaderMaterial attach="material"  uTexture={texture}   /> */}
@@ -124,40 +73,121 @@ export default function PlaneGeo() {
 
     }, [])
 
-
+    const handleHoverOn = (e) => {
+      console.log(e.object.scale)
+      gsap.to(e.object.scale, {
+        overwrite:'auto',
+        x:1.4,
+        y:1.4,
+        z:0,
+        duration:1
+      })
+    }
+    const handleHoverOut = (e) => {
+      console.log(e.object.scale)
+      gsap.to(e.object.scale, {
+        overwrite:'auto',
+        x:1,
+        y:1,
+        z:0,
+        duration:1
+      })
+    }
+    const scroller = useScroll()
+    let keyStart = false 
+    const MAX_DISTANCE = 160;
+    const positionUpdates = useRef(null)
 
 
     useEffect(() => {
-        console.log(meshRef.current.children)
+      if(keyStart == true) {return}
+      //  console.log(meshRef.current.children)
         let list = meshRef.current.children
         meshRef.current.position.set(-(SIZE_GROUP.w / 2 + 50), -(SIZE_GROUP.h / 1.6), SIZE_GROUP.z)
-        // const timeline = gsap.timeline({})  
+        listMesh.current = (meshRef.current.children).slice(15,30)
+      //  console.log(listMesh.current)
 
-        let dl = Math.random() * 4 + .5
+
         list.forEach((item, i) => {
             //console.log(item)
             gsap.timeline({ overwrite: "auto" })
                 .to(item.material, {
                     opacity: 1,
-                    duration: 3,
+                    duration: 1.5,
                     ease: Power2.easeOut,
                     delay: Math.random() * 2 + .5,
                 })
-                .fromTo(item.position, {
+                /* .fromTo(item.position, {
                     z: -220
                 }, {
-                    z: -100,
-                    duration: 3,
+                    z: 0,
+                    duration: 1,
                     ease: Power2.easeOut,
                     delay: .7,
-                }, "<")
+                }, "<") */
         })
+        keyStart = true
+
+        positionUpdates.current = [
+          { index: 16, factor: 15 },
+          { index: 17, factor: 40 },
+          { index: 18, factor: 3 },
+          { index: 21, factor: 8 },
+          { index: 22, factor: 75 },
+          { index: 23, factor: 8 },
+          { index: 26, factor: 15 },
+          { index: 27, factor: 40 },
+          { index: 28, factor: 3 },
+          { index: 30, factor: 7 },
+          { index: 31, factor: 17 },
+          { index: 32, factor: 37 },
+          { index: 34, factor: 7 },
+          { index: 35, factor: 35 },
+          { index: 36, factor: 95 },
+          { index: 37, factor: 5 },
+        ].map(({ index, factor }) => ({
+          object: meshRef.current.children[index],
+          factor: factor,
+        }));
+
     }, [meshRef.current]);
 
+    let distance_store 
 
+
+    const updatePosition = (object, targetPosition, factor, delta) => {
+      object.position.z = THREE.MathUtils.damp(
+        object.position.z,
+        targetPosition,
+        factor,
+        delta
+      );
+    };
+
+    const visible = useRef(false)
+ 
+   // const ref = useIntersect((isVisible) => (visible.current = isVisible))
+    const { height } = useThree((state) => state.viewport)
+
+
+    useFrame((state, delta) => {
+   // console.log(ref.current)
+    //  console.log(scroller.offset)
+       
+        if (keyStart = true && scroller.offset <= MAX_DISTANCE) {
+          distance_store = scroller.offset
+        
+          let DISTANCE = Math.min(distance_store * 170, MAX_DISTANCE);
+          positionUpdates.current.forEach(({ object, factor }) => {
+            updatePosition(object, DISTANCE, factor,delta);
+          });
+        }else{
+          distance_store = MAX_DISTANCE
+        }
+      });
     return (
         <>
-            <group ref={meshRef}  onWheel={(e) => console.log('wheel spins')}>
+            <group ref={meshRef} >
                 {targets}
             </group>
         </>

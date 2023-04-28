@@ -1,10 +1,9 @@
 import React,{useEffect,useState,useRef} from 'react'
 import usePageTransition from '../hooks/usePageTransition.js'
 import gsap from 'gsap';
-import '../styles/Contacts.css'
-import LocomotiveScroll from 'locomotive-scroll';
+import '../styles/page-contacts.css'
 const images = {
-  image1: require('.././asset/gallery/dg.png'),
+  image1: require('.././asset/gallery/n.png'),
   image2: require('.././asset/gallery2.png'),
  
 };
@@ -18,26 +17,49 @@ export default function Contact() {
 
         <section data-scroll-section  style={{display:'flex',width:'100%',height:'100vh'}}>
           <div className='content-contacts-page'>
-            <span>Liên lạc&nbsp;-&nbsp;Contact&nbsp;-&nbsp;Bộnjour&nbsp;-&nbsp;Contacno&nbsp;-&nbsp;Get in touch&nbsp;-&nbsp;Ni Hao</span>
+            <a className="loop-holderrr">
+               <div className="loop-holder__text">Liên lạc&nbsp;-&nbsp;Contact&nbsp;-&nbsp;Bộnjour&nbsp;-&nbsp;Contacno&nbsp;-&nbsp;Get in touch&nbsp;-&nbsp;Ni Hao</div>
+               <div className="loop-holder__text">Liên lạc&nbsp;-&nbsp;Contact&nbsp;-&nbsp;Bộnjour&nbsp;-&nbsp;Contacno&nbsp;-&nbsp;Get in touch&nbsp;-&nbsp;Ni Hao</div>
+            </a>
+            
             <div className='info'> 
-            <div className='detail'>
-              <p className='tit'>Sẵn sàng làm việc cùng 20Studio ? Hãy để lại lời nhắn cho chúng tôi nhé</p>
-              
-              <p>20studio.contact@gmail.com</p>
-              <p>0354 2022 00</p>
-              <p>62/193 Lý Chính Thắng, phường Võ Thị Sáu, quận 3, TP.HCM</p>
-            </div>
-             
-         
-              <div className='action'>
-
-                <a>xem trên google map</a>
-                <a value='/' onClick={redirectPage}>back to home</a>
+              <div className='detail'>
+                <p className='tit'>Sẵn sàng làm việc cùng 20Studio? Hãy để lại lời nhắn cho chúng tôi nhé.</p>
               </div>
+             <div className='sendInfo'>
+                <input placeholder='Lời nhắn'></input>
+                <button type='submit'>Gửi</button>
+              </div>
+             <div className='detail-info'>
+             <div className='location'>
+                <div className='map'>
+
+                </div>
+                <ul className='info'>
+                  <li>20studio.contact@gmail.com</li>
+                  <li>0354 2022 00</li>
+                  <li>62/193 Lý Chính Thắng, phường Võ Thị Sáu, quận 3, TP.HCM</li>
+                  <li className='btn'><a>xem trên google map</a></li>
+                </ul>
+              </div>
+             
+              
+                <div className='social'>
+                  <a>FACEBOOK</a>
+                  <a>INSTAGRAM</a>
+                  <a>TIKTOK</a>
+                  <a>LINKEDIN</a>
+                </div>
+             </div>
+
+                <span className='banquyen'>
+                  All rights reserved 20studio@
+                </span>
+
             </div>
             <div className='fake-div'>
-            <a> <img src={images.image1} alt=''/></a>
-            <a> <img src={images.image2} alt=''/></a>
+            <a> </a>
+          {/*   <a> <img src={images.image2} alt=''/></a> */}
             </div>
           </div>
         </section>

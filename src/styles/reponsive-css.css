@@ -41,22 +41,27 @@
     .dev_product--bannersub a.sub {
         max-width: 75vw !important;
     }
-    .step1-dev_products .text, .step2-dev_products .text, .step3-dev_products .text, .step4-dev_products .text {
-        max-width: 80vw !important;
+     .step2-dev_products .text, .step3-dev_products .text, .step4-dev_products .text {
+        
     }
-    .step1-dev_products .title, .step2-dev_products .title, .step3-dev_products .title, .step4-dev_products .title {
-        font-size: 70px !important;
+    .step1-dev_products .text {
+        left:33.3333% !important;
+        width: 60% !important;
     }
-    .step1-dev_products .des, .step2-dev_products .des, .step3-dev_products .des, .step4-dev_products .des{
-        font-size: 20px!important;
+    .title--sampledev{
+        font-size: 30px !important;
+    }
+    .des--sampledev{
+        font-size: 15px!important;
     }
     .step1-dev_products .img {
-        grid-column-start: 2 !important;
+        grid-column-start: 1 !important;
+        grid-column-end: 3 !important;
+      height: 80vh !important;
     }
     .step1-dev_products .img img {
-        width: auto!important;
-        height: 80vh!important;
-        transform: translateX(-22%)!important;
+        margin-left: 0 !important;
+        
     }
     .step1-dev_products .img-behind {
         right: unset !important;
@@ -135,5 +140,13 @@
     .step4-products .img {
         grid-column-start: 2!important;
         
+    }
+
+
+   
+}
+@media (max-width:567px) {
+    .containerScroll {
+        opacity: 0 !important;
     }
 }

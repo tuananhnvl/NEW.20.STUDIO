@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react'
-import Contact from '../components/Contact';
-import useLocoScroll from '.././hooks/useLocoScroll';
-import '.././styles/pattern-services-item.css'
+/* import React, { useEffect, useRef } from 'react'
+import Contact from '../../components/Contact';
+import useLocoScroll from '../../hooks/useLocoScroll';
+
 import gsap from 'gsap';
 import { useNavigate } from 'react-router-dom';
-import usePageTransition from '../hooks/usePageTransition.js'
+import usePageTransition from '../../hooks/usePageTransition.js'
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 const images = {
     image1: require('.././asset/patternmaking/1.png'),
@@ -107,8 +107,7 @@ export default function PatternMaking() {
 
                 <div className='section-trans-gallery' id="see-our-work" ref={seeourworkRef} onClick={handleClick}>
                     <div className='content'><h2>SEE OUR WORK</h2></div>
-                    {/*     <div className='img' >
-            </div> */}
+                   
                     <div className='screen-trans'>
                         <img src={images.image6} alt='' />
                     </div>
@@ -123,3 +122,4 @@ export default function PatternMaking() {
 
     )
 }
+ */

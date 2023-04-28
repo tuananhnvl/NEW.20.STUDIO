@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import '../styles/cursorHover.css'
+import '../styles/compo-cursor-hover.css'
 import Cursor from '../hooks/useCursor'
 import vid1 from '../asset/videos/websites.mp4'
 import vid2 from '../asset/videos/apps.mp4'
