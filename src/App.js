@@ -36,7 +36,7 @@ function App() {
   const [statePosY,setStatePosY]= useState(0)
   const locationRef = useRef(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     if(location.pathname == '/demodrei'|| location.pathname == '/gallery') {return}
     
@@ -65,12 +65,12 @@ function App() {
     };
     
    
-  }, [location,containerRef]);
+  }, [location]);
 
   return (
     <>
       <Navbar />
-      <Grid />
+     {/*  <Grid /> */}
      {/*  <CanvasThree /> */}
       <main data-scroll-container className='containerScroll' ref={containerRef}>
         <div id='transition-section'><h2></h2></div>

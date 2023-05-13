@@ -64,8 +64,10 @@
         
     }
     .step1-dev_products .img-behind {
-        right: unset !important;
-        left: -268px !important;
+        right: 0 !important;
+        left: unset !important;
+        width: calc(33.333% /2 *3) !important;
+        
     }
 
 
@@ -85,6 +87,10 @@
         grid-column-start: 1!important;
         grid-column-end: 4!important;
     }
+    .step2-dev_products .img {
+        width: 66.666% !important;
+    }
+
     .step4-dev_products .img img {
         width: 100% !important;
     }
@@ -142,8 +148,6 @@
         
     }
 
-
-   
 }
 @media (max-width:567px) {
     .containerScroll {

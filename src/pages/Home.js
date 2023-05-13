@@ -4,20 +4,9 @@ import usePageTransition from '.././hooks/usePageTransition';
 import { Link } from 'react-router-dom';
 import '.././styles/Home.css'
 
-
+import {images} from '.././utils/load-image.js'
 import SliderPartners from '../components/SliderPartners';
 import Contact from '../components/Contact';
-
-const images = {
-  image1: require('.././asset/gallery/3.png'),
-  image2: require('.././asset/gallery/5.png'),
-  image3: require('.././asset/gallery/8.png'),
-  image4: require('.././asset/gallery/b.png'),
-  image5: require('.././asset/gallery/7.jpg'),
-  sample1: require('.././asset/sample_1.png'),
-  sample2: require('.././asset/sample_2.png'),
-  sample3: require('.././asset/sample_3.png')
-};
 
 
  function Home() {

@@ -1,0 +1,7 @@
+====  fix drag n click 
+==== fix img when click move to center of camera
+
+
+
+// example shader
+https://experiments.p5aholic.me/

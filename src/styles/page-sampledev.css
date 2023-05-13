@@ -231,6 +231,7 @@
     height: 70vh;
     overflow: hidden;
     display: block;
+    z-index:5;
 }
 
 
@@ -264,10 +265,11 @@
     position: absolute;
     bottom: 50px;
     left:calc(100%/5*3);
-
+    z-index:0;
     width: fit-content;  
     height: fit-content;
     display: block;
+    
 }
 .step1-dev_products .img-behind:before {
     content:"";
@@ -292,7 +294,7 @@
     width: 50vw;
     z-index: 10;
     height: 50vh;
-    overflow: hidden;
+    
 }
 
 
