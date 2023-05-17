@@ -1,9 +1,9 @@
 import React, { createContext, useState, useLayoutEffect, useEffect, useCallback, lazy, Suspense, useRef, useMemo } from 'react'
 import './styles/App.css';
-import './styles/lib-locomotive-scroll.css';
+import './styles/locomotive-scroll.css';
 import './styles/reponsive-css.css'
 import Navbar from './components/Navbar';
-import Grid from './components/Grid'
+import Grid10 from './components/Grid10'
 import './fonts/Marcellus-Regular.ttf';
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 
@@ -19,63 +19,30 @@ import DemoTriggleEffect from './components/demolib/DemoTriggleEffect'
 import PageNotFound from './pages/PageNotFound'
 import DreiScroll from './pages/DreiScroll'
 import useLocoScroll from './hooks/useLocoScroll';
-
+import {images} from './utils/load-image.js'
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 //import Test from "./components/Test";
 const Test = lazy(() => import("./components/Test"));
 
 
-gsap.registerPlugin(ScrollTrigger);
-
 function App() {
-  console.log('App Render !')
-  const location = useLocation();
-  const containerRef = useRef(null)
-  const configVal = useRef(0)
-  const [statePosY,setStatePosY]= useState(0)
-  const locationRef = useRef(null)
-
-  useLayoutEffect(() => {
-
-    if(location.pathname == '/demodrei'|| location.pathname == '/gallery') {return}
-    
-    console.log(`useLocoScroll start!`)
-
   
-    let locoScroll = new LocomotiveScroll({
-      el: containerRef.current,
-      smooth: true,
-      multiplier: 1.2,
-    });
-
-    console.log(`useLocoScroll complete!`)
-    locoScroll.on('scroll',() => {
-      localStorage.setItem('scrollPosCre', locoScroll.scroll.instance.scroll.y)
-     // console.log(locoScroll.scroll.instance.scroll.y)
-    //  onScrollPosChange(locoScroll.scroll.instance.scroll.y);
-      })
-    return () => {
-      if (locoScroll) {
-    
-        locoScroll.destroy();
-        locoScroll = null;
-        console.log('locoScroll =>>>> null')
-      }
-    };
-    
-   
-  }, [location]);
+  console.log('C:: App Render !')
+  let locoScroll = null;
+  const location = useLocation();
+  
 
   return (
     <>
       <Navbar />
-     {/*  <Grid /> */}
+      <Grid10 />
      {/*  <CanvasThree /> */}
-      <main data-scroll-container className='containerScroll' ref={containerRef}>
+      <main >
         <div id='transition-section'><h2></h2></div>
+      
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home locoScroll={locoScroll} />} />
           <Route path="/sampledev" element={<SampleDev />} />
           <Route path="/products" element={<Products />} />
           <Route path="/contact" element={<Contact />} />
@@ -85,6 +52,7 @@ function App() {
           <Route path='/hoverr3f1' element={<HoverR3F1/>} />
           <Route path='/demotriggle' element={<DemoTriggleEffect/>} />
         </Routes>
+        
       </main>
     </>
   );

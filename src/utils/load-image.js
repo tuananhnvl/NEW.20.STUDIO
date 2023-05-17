@@ -6,5 +6,6 @@ export const images = {
   image5: require('.././asset/gallery/7.jpg'),
   sample1: require('.././asset/sample_1.png'),
   sample2: require('.././asset/sample_2.png'),
-  sample3: require('.././asset/sample_3.png')
+  sample3: require('.././asset/sample_3.png'),
+  logowhite : require('.././asset/20-studio-white-sm.png'),
 };

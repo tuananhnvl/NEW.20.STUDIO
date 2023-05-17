@@ -26,7 +26,7 @@ export default function Navbar() {
     let isAnimating = false;
     let animation;
     if (!isNavOpen) {
-      console.log('-- Navbar open!...')
+      console.log('Nav:: Navbar opening...')
       animation = gsap.timeline({})
       .set(
         navDom.current,
@@ -100,7 +100,7 @@ export default function Navbar() {
 
 
     } else {
-      console.log('-- Navbar closee!...')
+      console.log('Nav:: Navbar is close')
       animation = gsap.timeline({})
         .set(navDom.current,
         {
@@ -170,7 +170,7 @@ export default function Navbar() {
   useEffect(()=>{
  
     if(!isNavOpen) {
-      console.log('-- Navbar closee!...')
+      console.log('Nav:: Navbar is close')
       gsap.timeline({})
         .set(navDom.current,
         {
@@ -303,16 +303,16 @@ export default function Navbar() {
              {/*  <Link to="/gallery" onClick={closeNav}>
                 <p>Dự án</p>
               </Link> */}
-              <Link to="/sampledev" onClick={closeNav}>
+              <Link to="/sampledev" onClick={closeNav} href="/sampledev">
                 <p>Phát&nbsp;triển thiết&nbsp;kế</p>
               </Link>
-              <Link to="/products" onClick={closeNav}>
+              <Link to="/products" onClick={closeNav} href="/products">
                 <p>Sản&nbsp;xuất</p>
               </Link>
-              <Link to="/gallery" onClick={closeNav}>
+              <Link to="/gallery" onClick={closeNav} href="/gallery">
                 <p>Dự&nbsp;án</p>
               </Link>
-              <Link to="/contact" onClick={closeNav}>
+              <Link to="/contact" onClick={closeNav} href="/contact">
                 <p>Liên&nbsp;hệ</p>
               </Link>
  
@@ -325,7 +325,7 @@ export default function Navbar() {
           </div>
           <div className="info-company" ref={infoBotNav}>
             <div className="logo">
-              <Link to="/" onClick={closeNav}><img src={logoSm} alt=""/></Link>
+              <Link to="/" onClick={closeNav} href="/"><img src={logoSm} alt=""/></Link>
             </div>
             <div className="info" >
               <div>

@@ -2,7 +2,7 @@ import React,{useEffect,useRef, useState} from 'react'
 import gsap from 'gsap'
 import './01.css'
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
-import useLocoScrollTriggle from '../../hooks/useLocoScrollTriggle';
+//import useLocoScrollTriggle from '../../hooks/useLocoScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 const images = {
     image1: require('../.././asset/sampledev/1.png'),
@@ -16,7 +16,7 @@ const images = {
 };
 
 export default function DemoTriggleEffect() {
-  useLocoScrollTriggle(true)
+ // useLocoScrollTriggle(true)
     const boxWr = useRef(null)
     let arrItem = []
   useEffect(()=>{

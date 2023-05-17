@@ -6,7 +6,7 @@ import GalleryInside from '.././components/GalleryInside';
 import gsap, { Power2 } from 'gsap'
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-
+import useLocoScrollTrigger from '.././hooks/useLocoScrollTrigger'
 
 import '.././styles/svg-style.css'
 const images = {
@@ -24,10 +24,10 @@ const images = {
 gsap.registerPlugin(CSSRulePlugin, MotionPathPlugin);
 export default function Products() {
     console.log('==============Products render================')
-
+    const initScroll = useLocoScrollTrigger(true)
     const { redirectPage } = usePageTransition();
     const [offTask,setOffTask] = useState(false)
-    
+     
     useEffect(() => {
         if(!offTask) {return}
         let targets = gsap.utils.toArray('.box-trans');
@@ -124,22 +124,22 @@ export default function Products() {
     return (
      
              
-            <section >
+        <section  data-scroll-container className='container'>
                <div className='pin-menu'>
-                    <a value='/' onClick={redirectPage}>Home</a>
-                        <a value='/sampledev' onClick={redirectPage}>Sample Dev</a>
-                        <a value='/products' onClick={redirectPage}>Products</a>
-                        <a value='/contact' onClick={redirectPage}>Contact</a>
+                    <button value='/' onClick={redirectPage}>Home</button>
+                        <button value='/sampledev' onClick={redirectPage}>Sample Dev</button>
+                        <button value='/products' onClick={redirectPage}>Products</button>
+                        <button value='/contact' onClick={redirectPage}>Contact</button>
                     </div>
                 <div className='products_banner' >
-                    <a><img src={images.image1} alt='' /></a>
+                    <div><img src={images.image1} alt='' /></div>
                     <h2>SẢN XUẤT</h2>
                 </div>
 
                 <div className='products_banner-sub' >
-                    <a className='sub'>Từ nguyên liệu đến thành phẩm. Chúng tôi có thể cung cấp dịch vụ sản xuất thời trang.</a>
-                    <a className='sub-next'>
-                        <a>Quy trình làm việc</a>
+                    <div className='sub'>Từ nguyên liệu đến thành phẩm. Chúng tôi có thể cung cấp dịch vụ sản xuất thời trang.</div>
+                    <div className='sub-next'>
+                        <h3>Quy trình làm việc</h3>
                         <svg data-name="arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143.25 244.55">
 
                             <g id="arrow-svg" data-name="Layer-Main">
@@ -149,7 +149,7 @@ export default function Products() {
                                 <rect className="cls-1" x="80.81" y="218.76" width=".5" height="30" transform="translate(189.04 11.15) rotate(45)" />
                             </g>
                         </svg>
-                    </a>
+                    </div>
                 </div>
                 {/* list step ( 5 step ) */}
                 <div className='wrapper-step-product'>

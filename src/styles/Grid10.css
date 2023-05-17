@@ -1,0 +1,63 @@
+:root {
+    --numberColDeskop: 10;
+    --numberColIpad: 7;
+    --numberColPhone: 4;
+
+}
+.wrapper-grid10hook {
+    position: relative;
+    display: grid;
+    width: calc(100vw - 100px); 
+    margin-left:50px;
+    grid-template-columns: repeat(var(--numberColDeskop), 1fr);
+  
+    gap:10px;
+}
+.wrapper-grid10 {
+    position: fixed;
+    width: calc(100vw - 100px); 
+    margin-left:50px;
+    height: 100vh;
+    overflow: hidden;
+    background: rgba(107, 176, 122, 0.073);
+    z-index: 999999;
+    display: grid;
+    grid-template-columns: repeat(var(--numberColDeskop), 1fr);
+    grid-template-rows:100%;
+    gap:10px;
+    justify-content: space-evenly;  
+    opacity: 0.3;
+    pointer-events:none;
+ 
+}
+.content {
+    position: relative;
+    background-color: brown;
+    z-index: 99999;
+    display: grid;
+    grid-template-columns:repeat(10,1fr);
+}
+.wrapper-grid10 span {
+    display:block;
+    border: 1px solid green;
+    background: rgba(173, 216, 230, 0.219);
+}
+.wrapper-grid10 span:hover {
+    background: rgba(173, 216, 230, 0.819);
+}
+.wrapper-grid10 > span:nth-child(2) {
+  
+      background: red !important;
+  }
+@media (max-width:1000px) {
+    .wrapper-grid10 {   
+        grid-template-columns: repeat(var(--numberColIpad),1fr)!important;
+    }     
+
+}
+@media (max-width:567px) {
+    .wrapper-grid10 {
+        grid-template-columns: repeat(var(--numberColPhone),1fr)!important;
+    }    
+
+}

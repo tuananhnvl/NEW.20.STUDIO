@@ -3,104 +3,156 @@ import gsap from 'gsap'; //hiệu ứng
 import usePageTransition from '.././hooks/usePageTransition';
 import { Link } from 'react-router-dom';
 import '.././styles/Home.css'
-
 import {images} from '.././utils/load-image.js'
 import SliderPartners from '../components/SliderPartners';
 import Contact from '../components/Contact';
-
+import useLocoScrollTrigger from '../hooks/useLocoScrollTrigger'
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
  function Home() {
-  console.log('==============Home render================')
-  
+  console.log('P:: Home render')
   const { redirectPage } = usePageTransition();
-  const [offTask, setOffTask] = useState(false)
-  const listStickerSpace = document.querySelectorAll('.stickerSpace')
-  const contentHeroSection = useRef(null)
-
-  const stickerContext = [
-    `<span>craftmenship</span>`,
-    `<span>passion</span>`,
-    `<span>creaticity</span>`
-  ]
-
+  const containerRef = useRef(null)
+  const sectionGalleryRef = useRef(null)
+  const initScroll = useLocoScrollTrigger(true)
+  // Function to calculate the offset between elements
+  const calculateOffset = (current, next) => {
+    const currentRect = current.getBoundingClientRect();
+    const nextRect = next.getBoundingClientRect();
+    console.log( currentRect.bottom)
+    console.log(nextRect.top)
+    return currentRect.bottom - nextRect.top;
+  };
   useEffect(() => {
-    if (listStickerSpace.length > 2) {
-      for (let y = 0; y < 5; y++) {
-        // console.log(y)
-        listStickerSpace[0].innerHTML += `${stickerContext[0]}`
-        listStickerSpace[1].innerHTML += `${stickerContext[1]}`
-        listStickerSpace[2].innerHTML += `${stickerContext[2]}`
-      }
+  //  console.log(initScroll)
+    if (sectionGalleryRef.current) {
+      const brand1 = document.getElementById("brand1")
+      const brand2 = document.getElementById("brand2")
+      let ctx = gsap.context(() => {
+        const timeline = gsap.timeline();
+        // Animation for #brand1
+        timeline.to("#brand1", {
+          y: - brand1.getBoundingClientRect().height,
+        });
+        timeline.to("#brand2", {
+          y: - brand2.getBoundingClientRect().height,
+          scrollTrigger : {
+          
+            scroller : '.container',
+            start: () => 0,
+            end: () => 'max',
+            markers: true,
+            onUpdate: () => {
+            }
+          }
+        });
+        // Animation for #brand2 with offset condition
+   /*      timeline.to("#brand2", {
+          y: -100,
+        }); */
+        const scrollTrigger = ScrollTrigger.create({
+          trigger: sectionGalleryRef.current,
+          scroller: '.container',
+          scrub: true,
+          pin: true,
+          //pinSpacing: false,
+          markers: true,
+          start: "top top",
+          end: "+=420%",
+          onUpdate: (self) => {
+          },
+          animation: timeline
+        });
+        return () => {
+          scrollTrigger.kill(); // Destroy the ScrollTrigger instance when the component unmounts
+        };
+      })
+      return () => ctx.revert();
     }
-
-  }, [listStickerSpace])
- 
-
-  useEffect(()=>{
-  
-    gsap.fromTo(contentHeroSection.current,{
     
-      opacity:0,
-      y: -100,
-    },{
-      delay:1,
-      opacity:1,
-      y: 0,
-      stagger:0.15,
-      duration:1
-    })
-  },[contentHeroSection])
+  }, [sectionGalleryRef])
 
   return (
     <>
-      <section  data-scroll-section className='container'>
-        <div className='hero-section' > 
-          <div className='text' ref={contentHeroSection} >
-            <h2>20 Studio</h2>
-            <p>Chúng tôi chuyên cung cấp dịch vụ gia công các mẫu thiết kế</p>
-          </div>
-        </div>
-   
-        <div className='clipwelcome-section' >
-          <div className='text'>
-            <span >REEL</span>
-          </div>
-          <div className='clip'>
-            <img src={images.image3} alt='' />
-          </div>
-        </div>
-        <div className='servcies_home-section' >
-          <div className='title'>
-            <h2>Servcies</h2>
-          </div>
-          <div className='pin-menu'>
-              <Link to='/' >Home</Link>
-                <Link to='/sampledev' >Sample Dev</Link>
-                <Link to='/products' >Products</Link>
-                <Link to='/contact' >Contact</Link>
+      <section  data-scroll-container className='container' ref={containerRef}>
+        <div className='section-hero '>
+          <div className=' wrapper-grid10hook'>
+            <div className='des'>
+              <p>20Stuido chuyên thiết kế, gia công và sản xuất các sản phẩm mang tính sáng tạo cao, giúp khách hàng thiết kế sản phẩm và xây dựng thương hiệu của họ</p>
             </div>
-          <div className='list'>
-            <a><span id='brading_servcies'>Branding</span></a>
-            <a><span id='sampledev_servcies'>Sample Develop</span></a>
-            <a><span id='products_servcies'>Production</span></a>
+            <div className='tit'>
+              <h2>Creative Production Studio</h2>
+            </div>
+            
+            <div className='more'>
+              <a className='logo-img'>
+                <img src={images.logowhite} alt='' />
+              </a>
+              <ul>
+                <li>Gallery</li>
+                <li>Services</li>
+                <li>Contact</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className='passion-section'>
-          <div className='content'>
-            <div className='text'>with craftmentship, creativity and love, we turn our client’s ideas into peice of art</div>
-            <div className='img'><img src={images.image4} alt='' /></div>
-          </div>
-          <div className='sticker-warpper'>
-            <div className='stickerSpace'></div>
-            <div className='stickerSpace'></div>
-            <div className='stickerSpace'></div>
+        <div className='section-services'>
+          <div className=' wrapper-grid10hook'>
+              <div className='tit'>
+                <h2>Services</h2>
+              </div>
+              <div className='des'>
+                <p>We believe an excellent product is made with expertise, craftsmanship and passion, what you will get from 20Studio</p>
+              </div>
+              <div className='list'>
+                <ul>
+                  <li>Prototype develop</li>
+                  <li>manufacturing</li>
+                  <li>Branding</li>
+                </ul>
+              </div>
           </div>
         </div>
-        <SliderPartners />
-
-
+        <div className='section-gallery'  ref={sectionGalleryRef}>
+            <div className='name-section wrapper-grid10hook'>
+              <div className='tit'><h2>Gallery</h2></div>
+            {/*   <div className='des' ><p>Our honor to be parts of your successsuccess</p></div> */}
+            </div>
+            <div className='wrapper-grid10hook list-img'>
+         
+              <div className='box-img brand1' id="brand1">
+                <a><img src={images.image1} alt='' /></a>
+                <h3>lungtung</h3>
+                <span>Fall-Winter 2022</span>
+                <p>Sample Develop</p>
+              </div>
+              <div className='box-img brand2' id="brand2">
+                <a><img src={images.image1} alt='' /></a>
+                <h3>lungtung</h3>
+                <span>Fall-Winter 2022</span>
+                <p>Sample Develop</p>
+              </div>
+             {/*  <div className='box-img brand3' id="brand3">
+                <a><img src={images.image1} alt='' /></a>
+                <h3>lungtung</h3>
+                <span>Fall-Winter 2022</span>
+                <p>Sample Develop</p>
+              </div>
+              <div className='box-img brand4' id="brand4">
+                <a><img src={images.image1} alt='' /></a>
+                <h3>lungtung</h3>
+                <span>Fall-Winter 2022</span>
+                <p>Sample Develop</p>
+              </div> */}
+       
+            </div>
+            
+ 
+        </div>
+ 
         <Contact />
-
+        <Contact />
       </section>
     </>
   )

@@ -377,7 +377,7 @@ function Items() {
   // listener
   window.addEventListener('wheel', (e) => {
     speed += (e.deltaY) * 0.0002
-  //  console.log(speed)
+    console.log(speed)
   })
 
 
@@ -516,7 +516,7 @@ function Items() {
 
   
   useFrame((state, delta) => {
-    console.log('uf-run')
+    //console.log('uf-run')
     baseval += 0.0005
   
     offSrollValue = 1
@@ -545,13 +545,13 @@ function Items() {
       `
     ) */
     
-    console.log( localStorage.getItem('positionC'))
+    //console.log( localStorage.getItem('positionC'))
     if(groupItemRef.current.position.z < 0.5 && timelineAction !== 0) {
       timelineAction += 0.00005
       speed *= 0.02 // slow speed when intro action
     }else{
       if(timelineAction > 0.0146499) {}
-      console.log(`Last timeLine ::::: ${timelineAction}`)
+     // console.log(`Last timeLine ::::: ${timelineAction}`)
       timelineAction = 0
     }
     if(timelineAction == 0) {
@@ -644,7 +644,7 @@ function Items() {
 
     } */
     speedDrag = localStorage.getItem('positionC')/2 
-console.log(speedDrag)
+//console.log(speedDrag)
 groupItemRef.current.position.x = THREE.MathUtils.damp(
   groupItemRef.current.position.x,
   (posDrag.current.x) - ((boxSize.current.x ) / 2) + fixDragX,

@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React from 'react'
 
 import '.././styles/page-sampledev.css'
-import gsap, { Power2 } from 'gsap';
 import Contact from '../components/Contact'
 import usePageTransition from '../hooks/usePageTransition.js'
 import GalleryInside from '../components/GalleryInside';
-
+import useLocoScrollTrigger from '.././hooks/useLocoScrollTrigger'
 const images = {
     image1: require('.././asset/sampledev/1.png'),
     image3: require('.././asset/sampledev/2.png'),
@@ -25,21 +24,21 @@ const images = {
 };
 
 export default function SampleDev() {
-    console.log('==============Sample Dev render================')
-
+    
+    console.log('P:: SampleDev render')
     const { redirectPage } = usePageTransition();
-    const [offTask, setOffTask] = useState(false);
+    const initScroll = useLocoScrollTrigger(true)
 
     return (
         <>
 
-            <section data-scroll-section className='containerScroll' >
+<section  data-scroll-container className='contcainer'>
                 <div className='dev_product--banner' >
                     <div className='pin-menu'>
-                        <a value='/' onClick={redirectPage}>Home</a>
-                        <a value='/sampledev' onClick={redirectPage}>Sample Dev</a>
-                        <a value='/products' onClick={redirectPage}>Products</a>
-                        <a value='/contact' onClick={redirectPage}>Contact</a>
+                        <button value='/' onClick={redirectPage}>Home</button>
+                        <button value='/sampledev' onClick={redirectPage}>Sample Dev</button>
+                        <button value='/products' onClick={redirectPage}>Products</button>
+                        <button value='/contact' onClick={redirectPage}>Contact</button>
                     </div>
 
 
@@ -48,9 +47,9 @@ export default function SampleDev() {
                         <span>Thiết kế</span>
                     </div>
                     <div className='dev_product--bannersub' >
-                        <a className='sub'>Chúng tôi giúp khách hàng biến ý tưởng của họ thành sản phẩm hoàn thiện.</a>
-                        <a className='sub-next'>
-                            <a>Cách chúng tôi thực hiện</a>
+                        <span className='sub'>Chúng tôi giúp khách hàng biến ý tưởng của họ thành sản phẩm hoàn thiện.</span>
+                        <div className='sub-next'>
+                            <h3>Cách chúng tôi thực hiện</h3>
                             <svg data-name="arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143.25 244.55">
 
                                 <g id="arrow-svg" data-name="Layer-Main">
@@ -60,7 +59,7 @@ export default function SampleDev() {
                                     <rect className="cls-1" x="80.81" y="218.76" width=".5" height="30" transform="translate(189.04 11.15) rotate(45)" />
                                 </g>
                             </svg>
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -95,15 +94,15 @@ export default function SampleDev() {
                             </div>
                             <div className='detail' >
                                 <ul>
-                                    <li><a>Double-face</a></li>
-                                    <li><a>Digital print</a></li>
-                                    <li><a>Washing and dyeing</a></li>
-                                    <li><a>Transfer print</a></li>
-                                    <li><a>Laser cuts</a></li>
-                                    <li><a>Machine embroidery</a></li>
-                                    <li><a>Thermo-adhesive applications</a></li>
-                                    <li><a>Embossing / Debossing</a></li>
-                                    <li><a>Heat sealing</a></li>
+                                    <li><span>Double-face</span></li>
+                                    <li><span>Digital print</span></li>
+                                    <li><span>Washing and dyeing</span></li>
+                                    <li><span>Transfer print</span></li>
+                                    <li><span>Laser cuts</span></li>
+                                    <li><span>Machine embroidery</span></li>
+                                    <li><span>Thermo-adhesive applications</span></li>
+                                    <li><span>Embossing / Debossing</span></li>
+                                    <li><span>Heat sealing</span></li>
                                 </ul>
                             </div>
                         </div>
