@@ -288,9 +288,9 @@ export default function Navbar() {
       
  
       <div className="navbar">
-        <a onClick={openNav} id="" className="ic-nav-open">
+        <button onClick={openNav} id="" className="ic-nav-open">
           <SlMenu />
-        </a>
+        </button>
       </div>
       <div className="modal-nav-view" ref={navDom}>
         <div className="bg-move" ref={bgNav}>

@@ -35,11 +35,11 @@ export default function Contact() {
                             <textarea  defaultValue="Notes"></textarea>
                         </div>
                         <div  className='nor button-send'>
-                            <a className="loop-holder">
+                            <div className="loop-holder">
                             <div className="loop-holder__text">Send - Send - Send - Send - </div>
                             <div className="loop-holder__text">Send - Send - Send - Send - </div>
                                
-                            </a>
+                            </div>
 
                         </div>
                      

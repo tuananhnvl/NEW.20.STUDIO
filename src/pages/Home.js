@@ -86,9 +86,9 @@ gsap.registerPlugin(ScrollTrigger);
             </div>
             
             <div className='more'>
-              <a className='logo-img'>
+              <div className='logo-img'>
                 <img src={images.logowhite} alt='' />
-              </a>
+              </div>
               <ul>
                 <li>Gallery</li>
                 <li>Services</li>
@@ -122,13 +122,13 @@ gsap.registerPlugin(ScrollTrigger);
             <div className='wrapper-grid10hook list-img'>
          
               <div className='box-img brand1' id="brand1">
-                <a><img src={images.image1} alt='' /></a>
+                <div><img src={images.image1} alt='' /></div>
                 <h3>lungtung</h3>
                 <span>Fall-Winter 2022</span>
                 <p>Sample Develop</p>
               </div>
               <div className='box-img brand2' id="brand2">
-                <a><img src={images.image1} alt='' /></a>
+                <div><img src={images.image1} alt='' /></div>
                 <h3>lungtung</h3>
                 <span>Fall-Winter 2022</span>
                 <p>Sample Develop</p>

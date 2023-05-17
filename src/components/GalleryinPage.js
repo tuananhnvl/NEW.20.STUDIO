@@ -28,14 +28,14 @@ export default function GalleryinPage({setvalRedirect}) {
        <span className="line line-2"></span>
            <h2>Gallery</h2>
            <p>Have a look at our selected works that we have done so far</p>
-           <a value="/aboutus" onClick={readytoRedirect} >About us</a>
+           <button value="/aboutus" onClick={readytoRedirect} >About us</button>
        </div>
        <div className='img-gsap-fix'>
-           <a><img src={images.image1} alt="Image 1" /></a>
-           <a><img src={images.image2} alt="Image 2" /></a>
-           <a><img src={images.image3} alt="Image 3" /></a>
-           <a><img src={images.image4} alt="Image 4" /></a>
-           <a><img src={images.image5} alt="Image 5" /></a>
+           <span><img src={images.image1} alt="Image 1" /></span>
+           <span><img src={images.image2} alt="Image 2" /></span>
+           <span><img src={images.image3} alt="Image 3" /></span>
+           <span><img src={images.image4} alt="Image 4" /></span>
+           <span><img src={images.image5} alt="Image 5" /></span>
        </div>
    </div>
 

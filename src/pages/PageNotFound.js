@@ -31,30 +31,30 @@ export default function PageNotFound() {
    return (
 
          <div className='page404'>
-            <a className="loop-holder top-page">
+            <div className="loop-holder top-page">
                <div className="loop-holder__text">Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;</div>
                <div className="loop-holder__text">Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;</div>
-            </a>
-            <a className="loop-holder bottom-page">
+            </div>
+            <div className="loop-holder bottom-page">
                <div className="loop-holder__text">Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;</div>
                <div className="loop-holder__text">Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;Comming Soon &nbsp; &nbsp; &nbsp;</div>
-            </a>
+            </div>
             <div className='title-large'>
-               <a className='txt-error' style={{marginRight:'100px'}}>
+               <div className='txt-error' style={{marginRight:'100px'}}>
                   <span>E</span>
                   <span>R</span>
                   <span>R</span>
                   <span>O</span>
                   <span>R</span>
-               </a>
-               <a className="txt-404">
+               </div>
+               <div className="txt-404">
                   <span>4</span>
                   <span>0</span>
                   <span>4</span>
-               </a>
+               </div>
             </div>
 
-            <a className='btn-home' value='/' onClick={redirectPage} >Back to Home</a>
+            <div className='btn-home' value='/' onClick={redirectPage} >Back to Home</div>
          </div>
 
    )

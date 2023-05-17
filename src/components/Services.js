@@ -79,7 +79,7 @@ export default function Services() {
                 </div>
                 <div className='item-services-active' data-video-src="sampledevelop">
                     <span></span>
-                    <a>Sample Develop</a>
+                    <span>Sample Develop</span>
                    {/*  <div className='view'>
                       <video controls preload="auto" autoPlay muted loop>
                           <source src={vid1} type="video/mp4" />
@@ -88,7 +88,7 @@ export default function Services() {
                 </div>
                 <div className="item-services-active" data-video-src="commingsoon">
                   <span></span>
-                  <a >Comming Soon</a>
+                  <span >Comming Soon</span>
                  {/*  <div className='view'>
                     <video controls preload="auto" autoPlay muted loop>
                         <source src={vid2} type="video/mp4" />
@@ -97,7 +97,7 @@ export default function Services() {
                 </div>
                 <div className='item-services-active' data-video-src="draping">
                   <span></span>
-                  <a>Draping</a>
+                  <span>Draping</span>
                  {/*  <div className='view'>
                     <video controls preload="auto" autoPlay muted loop>
                         <source src={vid3} type="video/mp4" />
@@ -106,7 +106,7 @@ export default function Services() {
                 </div>
                 <div className='item-services-active' data-video-src="production">
                   <span></span>
-                  <a>Production</a>
+                  <span>Production</span>
                   {/* <div className='view'>
                     <video controls preload="auto" autoPlay muted loop>
                         <source src={vid1} type="video/mp4" />

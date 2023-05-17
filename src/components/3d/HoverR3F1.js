@@ -229,7 +229,7 @@ meshTransRef.current.material.uniforms.uScroll.value = new THREE.Vector2(offset.
 }
 
 
-const HoverR3F1 = () => {
+const HoverR3F11 = () => {
   console.log('REENDER')
   /* const optionsLeva = useMemo(() => {
     return {
@@ -274,9 +274,9 @@ const HoverR3F1 = () => {
       </Canvas>
         <div  style={{background:'transparent',zIndex:'2',position:'absolute',width:'100vw',height:'100vh',top:0,left:0,display:'flex',alignItems:'center'}}>
           <div style={{width:'100%',display:'flex',alignItems:'center',flexDirection:'column',justifyContent:'center'}}>
-            <a data='0'    style={{border:'1px solid green',margin: '0 auto',overflow:'hidden',width:'100%',color:'white',textTransform:'uppercase',fontSize: '70px',display:'flex', height:'20vh',alignItems:'center',display:'flex',alignItems:'center'}}><p>Tab1</p></a>
-            <a data='1'    style={{border:'1px solid green',margin: '0 auto',overflow:'hidden',width:'100%',color:'white',textTransform:'uppercase',fontSize: '70px',display:'flex', height:'20vh',alignItems:'center',display:'flex',alignItems:'center'}}><p>Tab2</p></a>
-            <a data='2'     style={{border:'1px solid green',margin: '0 auto',overflow:'hidden',width:'100%',color:'white',textTransform:'uppercase',fontSize: '70px',display:'flex', height:'20vh',alignItems:'center',display:'flex',alignItems:'center'}}><p>Tab3</p></a>
+            <div data='0'    style={{border:'1px solid green',margin: '0 auto',overflow:'hidden',width:'100%',color:'white',textTransform:'uppercase',fontSize: '70px',display:'flex', height:'20vh',alignItems:'center',display:'flex',alignItems:'center'}}><p>Tab1</p></div>
+            <div data='1'    style={{border:'1px solid green',margin: '0 auto',overflow:'hidden',width:'100%',color:'white',textTransform:'uppercase',fontSize: '70px',display:'flex', height:'20vh',alignItems:'center',display:'flex',alignItems:'center'}}><p>Tab2</p></div>
+            <div data='2'     style={{border:'1px solid green',margin: '0 auto',overflow:'hidden',width:'100%',color:'white',textTransform:'uppercase',fontSize: '70px',display:'flex', height:'20vh',alignItems:'center',display:'flex',alignItems:'center'}}><p>Tab3</p></div>
           </div>
       </div>
     </div>
@@ -285,5 +285,11 @@ const HoverR3F1 = () => {
    
   );
 };
-
+function HoverR3F1() {
+  return (
+    <div>
+      hello
+    </div>
+  )
+}
 export default HoverR3F1;

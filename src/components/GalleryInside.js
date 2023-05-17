@@ -48,14 +48,14 @@ export default function GalleryInside() {
             </g>
         </svg>
     </div>
-    <div className='list-img'>
+   {/*  <div className='list-img'>
         <a ><img src={images.image21} alt='' /></a>
         <a ><img src={images.image22} alt='' /></a>
         <a ><img src={images.image23} alt='' /></a>
         <a ><img src={images.image24} alt='' /></a>
         <a ><img src={images.image25} alt='' /></a>
         <a ><img src={images.image26} alt='' /></a>
-    </div>
+    </div> */}
 </div>
   )
 }
