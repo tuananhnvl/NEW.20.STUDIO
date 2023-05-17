@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState ,useMemo} from 'react';
+import { useLayoutEffect} from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 
 

@@ -1,10 +1,9 @@
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "../styles/compo-navbar.css";
 import { SlMenu } from "react-icons/sl";
-import { Link,useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import gsap from "gsap";
-import LoadingPage from '.././components/LoadingPage';
 
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import ImgNav from "../asset/hero.png";
@@ -28,85 +27,85 @@ export default function Navbar() {
     if (!isNavOpen) {
       console.log('Nav:: Navbar opening...')
       animation = gsap.timeline({})
-      .set(
-        navDom.current,
-        {
+        .set(
+          navDom.current,
+          {
+            opacity: 1,
+            duration: 0,
+
+          }
+        )
+        .add("startNavOpen")
+        .fromTo([bgNav.current.children[0]],
+          {
+            xPercent: 100,
+            duration: 0,
+
+          }, {
+          xPercent: 0,
+          duration: 1,
+          ease: "power3.inOut",
+        }, "startNavOpen")
+        .fromTo([bgNav.current.children[1]],
+          {
+            xPercent: -100,
+            duration: 0,
+
+          }, {
+          xPercent: 0,
+          duration: 1,
+          ease: "power3.inOut",
+        }, "<")
+
+        .to(
+          [
+            navItem.current.children[0].children,
+            navItem.current.children[1].children,
+            navItem.current.children[2].children,
+            navItem.current.children[3].children
+          ],
+          {
+            y: 0,
+            duration: 0.5,
+            stagger: 0.2,
+            ease: "ease-in-out",
+          })
+        .to(".imgNavBanner", {
           opacity: 1,
-          duration:0,
-          
-        }
-      )
-      .add("startNavOpen")
-      .fromTo([bgNav.current.children[0]],
-        { 
-          xPercent: 100, 
-          duration: 0,
-         
-        }, { 
-          xPercent: 0, 
-        duration: 1,
-        ease: "power3.inOut",
-      },"startNavOpen")
-      .fromTo([bgNav.current.children[1]],
-        { 
-          xPercent: -100, 
-          duration: 0,
-         
-        }, { 
-          xPercent: 0, 
-        duration: 1,
-        ease: "power3.inOut",
-      },"<")
+          delay: .5,
+          duration: .5,
+          ease: "ease-in-out"
+        }, "<")
 
-      .to(
-      [
-        navItem.current.children[0].children,
-        navItem.current.children[1].children,
-        navItem.current.children[2].children,
-        navItem.current.children[3].children
-      ],
-      {
-        y: 0,
-        duration: 0.5,
-        stagger: 0.2,
-        ease: "ease-in-out",
-      })
-      .to(".imgNavBanner", {
-        opacity:1,
-        delay:.5,
-        duration:.5,
-        ease: "ease-in-out"
-      },"<")
-      
-      .to(infoBotNav.current,{
-        opacity:1,
-        duration:.5
-      },"<")
-      .to(pseudoImgBannerNav, {
-        cssRule: {
-          width: "0%"
-        },
-        duration: .5
-      },"<")
+        .to(infoBotNav.current, {
+          opacity: 1,
+          duration: .5
+        }, "<")
+        .to(pseudoImgBannerNav, {
+          cssRule: {
+            width: "0%"
+          },
+          duration: .5
+        }, "<")
 
-      .set(
-        navDom.current,
-        {
-          pointerEvents: "auto",
-          duration:.2
-        }
-      )
-     
+        .set(
+          navDom.current,
+          {
+            pointerEvents: "auto",
+            duration: .2
+          }
+        )
+
 
 
     } else {
       console.log('Nav:: Navbar is close')
       animation = gsap.timeline({})
         .set(navDom.current,
-        {
-          duration: 0,
-          pointerEvents: "none",
-        }, "<")
+          {
+            duration: 0,
+            pointerEvents: "none",
+          }, "<")
         .to(
           [
             navItem.current.children[0].children,
@@ -115,7 +114,7 @@ export default function Navbar() {
             navItem.current.children[3].children
           ],
           {
-            y:170,
+            y: 170,
             duration: 0.3,
             stagger: 0.05,
             ease: "ease-in-out",
@@ -127,56 +126,56 @@ export default function Navbar() {
           duration: .5
         }, "<")
         .to(".imgNavBanner", {
-          opacity:0,
-          duration:.5,
+          opacity: 0,
+          duration: .5,
           ease: "ease-in-out"
-        },"<")
-        .to(infoBotNav.current,{
-          opacity:0,
-          duration:.5
-        },"<")
+        }, "<")
+        .to(infoBotNav.current, {
+          opacity: 0,
+          duration: .5
+        }, "<")
         .to([bgNav.current.children[0]], {
-          xPercent: -100, 
+          xPercent: -100,
           duration: 1,
           ease: "power3.inOut",
         })
         .to([bgNav.current.children[1]], {
-          xPercent: 100, 
+          xPercent: 100,
           duration: 1,
           ease: "power3.inOut",
-        },"<")
-        .to(navDom.current,
-        {
-          opacity: 0,
-          duration: 0.5,
-
-          ease: "ease-in-out",
         }, "<")
+        .to(navDom.current,
+          {
+            opacity: 0,
+            duration: 0.5,
+
+            ease: "ease-in-out",
+          }, "<")
 
     }
-    
 
-  
+
+
     setNavOpen(!isNavOpen);
 
     return () => {
       if (!isAnimating) {
         animation.reversed(true);
       }
-     
+
     };
   }
 
-  useEffect(()=>{
- 
-    if(!isNavOpen) {
+  useEffect(() => {
+
+    if (!isNavOpen) {
       console.log('Nav:: Navbar is close')
       gsap.timeline({})
         .set(navDom.current,
-        {
-          duration: 0,
-          pointerEvents: "none",
-        }, "<")
+          {
+            duration: 0,
+            pointerEvents: "none",
+          }, "<")
         .to(
           [
             navItem.current.children[0].children,
@@ -185,7 +184,7 @@ export default function Navbar() {
             navItem.current.children[3].children
           ],
           {
-            y:170,
+            y: 170,
             duration: 0.3,
             stagger: 0.05,
             ease: "ease-in-out",
@@ -197,96 +196,96 @@ export default function Navbar() {
           duration: .5
         }, "<")
         .to(".imgNavBanner", {
-          opacity:0,
-          duration:.5,
+          opacity: 0,
+          duration: .5,
           ease: "ease-in-out"
-        },"<")
-        .to(infoBotNav.current,{
-          opacity:0,
-          duration:.5
-        },"<")
+        }, "<")
+        .to(infoBotNav.current, {
+          opacity: 0,
+          duration: .5
+        }, "<")
         .to([bgNav.current.children[0]], {
-          xPercent: -100, 
+          xPercent: -100,
           duration: 1,
           ease: "power3.inOut",
         })
         .to([bgNav.current.children[1]], {
-          xPercent: 100, 
+          xPercent: 100,
           duration: 1,
           ease: "power3.inOut",
-        },"<")
-        .to(navDom.current,
-        {
-          opacity: 0,
-          duration: 0.5,
-
-          ease: "ease-in-out",
         }, "<")
+        .to(navDom.current,
+          {
+            opacity: 0,
+            duration: 0.5,
+
+            ease: "ease-in-out",
+          }, "<")
     }
- 
-  },[location])
-  
+
+  }, [location])
+
   function closeNav() {
     setNavOpen(false);
     let animation;
     animation = gsap.timeline({})
-    .to(
-      [
-        navItem.current.children[0].children,
-        navItem.current.children[1].children,
-        navItem.current.children[2].children,
-        navItem.current.children[3].children
-      ],
-      {
-        y:100,
-        duration: 0.3,
-        stagger: 0.05,
-        ease: "ease-in-out",
+      .to(
+        [
+          navItem.current.children[0].children,
+          navItem.current.children[1].children,
+          navItem.current.children[2].children,
+          navItem.current.children[3].children
+        ],
+        {
+          y: 100,
+          duration: 0.3,
+          stagger: 0.05,
+          ease: "ease-in-out",
+        })
+      .to(pseudoImgBannerNav, {
+        cssRule: {
+          width: '100%',
+        },
+        duration: .5
+      }, "<")
+      .to(".imgNavBanner", {
+        opacity: 0,
+        duration: .5,
+        ease: "ease-in-out"
+      }, "<")
+      .to(infoBotNav.current, {
+        pointerEvents: "none",
+        opacity: 0,
+        duration: .5
+      }, "<")
+      .to([bgNav.current.children[0]], {
+        xPercent: -100, // move both child elements to the right
+        duration: 1,
+        pointerEvents: "none",
+        ease: "power3.inOut",
       })
-    .to(pseudoImgBannerNav, {
-      cssRule: {
-        width: '100%',
-      },
-      duration: .5
-    }, "<")
-    .to(".imgNavBanner", {
-      opacity:0,
-      duration:.5,
-      ease: "ease-in-out"
-    },"<")
-    .to(infoBotNav.current,{
-       pointerEvents: "none",
-      opacity:0,
-      duration:.5
-    },"<")
-    .to([bgNav.current.children[0]], {
-      xPercent: -100, // move both child elements to the right
-      duration: 1,
-      pointerEvents: "none",
-      ease: "power3.inOut",
-    })
-    .to([bgNav.current.children[1]], {
-      xPercent: 100, // move both child elements to the right
-      duration: 1,
-      pointerEvents: "none",
-      ease: "power3.inOut",
-    },"<")
-    .to(navDom.current,
-    {
-      opacity: 0,
-      duration: 0.5,
-      ease: "ease-in-out",
-    }, "<")
+      .to([bgNav.current.children[1]], {
+        xPercent: 100, // move both child elements to the right
+        duration: 1,
+        pointerEvents: "none",
+        ease: "power3.inOut",
+      }, "<")
+      .to(navDom.current,
+        {
+          opacity: 0,
+          duration: 0.5,
+          ease: "ease-in-out",
+        }, "<")
 
-    
+
 
   }
 
   return (
     <>
-       
-      
- 
+
+
+
       <div className="navbar">
         <button onClick={openNav} id="" className="ic-nav-open">
           <SlMenu />
@@ -300,7 +299,7 @@ export default function Navbar() {
         <div className="detail">
           <div className="list-item">
             <div ref={navItem} className="item-menu">
-             {/*  <Link to="/gallery" onClick={closeNav}>
+              {/*  <Link to="/gallery" onClick={closeNav}>
                 <p>Dự án</p>
               </Link> */}
               <Link to="/sampledev" onClick={closeNav} href="/sampledev">
@@ -315,7 +314,7 @@ export default function Navbar() {
               <Link to="/contact" onClick={closeNav} href="/contact">
                 <p>Liên&nbsp;hệ</p>
               </Link>
- 
+
             </div>
             <div className="img">
               <div className="imgNavBanner">
@@ -325,7 +324,7 @@ export default function Navbar() {
           </div>
           <div className="info-company" ref={infoBotNav}>
             <div className="logo">
-              <Link to="/" onClick={closeNav} href="/"><img src={logoSm} alt=""/></Link>
+              <Link to="/" onClick={closeNav} href="/"><img src={logoSm} alt="" /></Link>
             </div>
             <div className="info" >
               <div>
@@ -334,7 +333,7 @@ export default function Navbar() {
                 <span>62/193 D.Ly Chinh Thang, P.8, Q.3, HCMC</span>
                 <span>GGMAP</span>
               </div>
-               
+
             </div>
           </div>
         </div>

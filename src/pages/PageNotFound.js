@@ -1,7 +1,5 @@
-import React,{useEffect} from 'react'
-import Link from 'react-router-dom'
+import{useEffect} from 'react'
 import usePageTransition from '../hooks/usePageTransition'
-import useLocoScroll from '../hooks/useLocoScroll';
 import gsap,{Power4}  from 'gsap';
 export default function PageNotFound() {
  
@@ -54,7 +52,7 @@ export default function PageNotFound() {
                </div>
             </div>
 
-            <div className='btn-home' value='/' onClick={redirectPage} >Back to Home</div>
+            <button className='btn-home' value='/' onClick={redirectPage} >Back to Home</button>
          </div>
 
    )

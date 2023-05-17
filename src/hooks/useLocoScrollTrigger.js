@@ -1,4 +1,4 @@
-import React, { useLayoutEffect,useEffect } from 'react';
+import { useEffect } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';

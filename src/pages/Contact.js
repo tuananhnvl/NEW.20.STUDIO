@@ -1,17 +1,7 @@
-import React,{useEffect,useState,useRef} from 'react'
-import usePageTransition from '../hooks/usePageTransition.js'
-import gsap from 'gsap';
+import React from 'react'
 import '../styles/page-contacts.css'
-const images = {
-  image1: require('.././asset/gallery/n.png'),
-  image2: require('.././asset/gallery2.png'),
- 
-};
-
 
 export default function Contact() {
-  const { redirectPage } = usePageTransition();
-  const [offTask,setOffTask] = useState(false)
 
   return (
 
