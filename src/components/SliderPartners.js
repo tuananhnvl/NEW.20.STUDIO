@@ -24,12 +24,13 @@ export default function SliderPartners() {
 
    
   return (
-    <section className='wrapper-slider-partners'>
+    <section className='wrapper-slider-partners wrapper-grid10hook'>
 
         <div className='heading'>
-        Our Partners
+        Khách hàng
         </div>
-      <Swiper
+        <div className='wrapper-swiper'>
+        <Swiper
         slidesPerView={3}
       
         dir="rtl"
@@ -62,6 +63,8 @@ export default function SliderPartners() {
         </SwiperSlide>
 
       </Swiper>
+        </div>
+     
     </section>
   );
 }

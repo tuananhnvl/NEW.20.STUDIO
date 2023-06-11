@@ -1,0 +1,130 @@
+useFrame((state, delta) => {
+    let groupItems = groupItemRef.current
+    //baseval += 0.0005
+    let vec2Clone = new THREE.Vector2(0, groupItems.position.z)
+  
+      
+  /*   if (state.scene.children[0].position.x < w * 2) {
+      state.scene.children[0].position.x += baseval
+    } else {
+      baseval = 0.123456
+    }
+    // CHECK DISTANCE TO ACTION MOVE
+ 
+    if (pointStartAction == false && baseval == 0.123456) {
+   
+      if (countTime > 2.5) { //df 2.5
+        pointStartAction = true
+        return
+      }
+    } */
+
+
+
+    countTime += delta / 2
+    if(groupItems.position.z < 0.5 && timelineAction !== 0) {
+      timelineAction += 0.00005
+      speed *= 0.02 // slow speed when intro action
+    }else{
+      if(timelineAction > 0.0146499) {}
+     // console.log(`Last timeLine ::::: ${timelineAction}`)
+      timelineAction = 0
+    }
+
+    // offset space (z)
+    if(timelineAction == 0) {
+    //  console.log('--THIS SPACE--')
+    speed *= 0.8 // defuat speed after intro end
+ 
+    //  console.log(groupItemRef.current.position.z)
+      if(groupItems.position.z < 0.25) {
+     //   console.log('>>out SPACE<<')
+        afterTimelineAction += 0.003
+      }else if(groupItems.position.z >1) {
+     //   console.log('>>in SPACE<<')
+        afterTimelineAction -= 0.008
+      }else{
+        afterTimelineAction = 0
+      }
+
+    }
+
+   
+    positionC += (((speed) + timelineAction + afterTimelineAction) * offSrollValue)
+ 
+    offsetscrollY = vec2Clone
+    .clone()
+    .sub(new THREE.Vector2(0, positionC * 1.2))
+    .multiplyScalar(-0.10)
+
+
+    groupItems.position.z = THREE.MathUtils.damp(
+      groupItems.position.z,
+      positionC * 1.2,
+      20,
+      delta
+    );
+
+    localStorage.setItem('offsetscrollY',(offsetscrollY.y))
+    // DRAG AND MAX-MIN DRAG DISTANCE
+    if (startDragKey == true && boxSize.current !== null) {
+     // console.log(groupItemRef.current.position)
+     /*  if (groupItemRef.current.position.x + (boxSize.current.x / 2) > ((boxSize.current.x / 2) - w) + fixTam) {
+        // console.log('out-L')
+        keyLockMesh = true
+        fixDragX -= 0.5
+      } else if (-(groupItemRef.current.position.x + (boxSize.current.x / 2)) > (((boxSize.current.x / 2) - w) + fixTam)) {
+        // console.log('out-R')
+        keyLockMesh = true
+        fixDragX += 0.5
+      } else {
+        // console.log('in')
+        keyLockMesh = false
+
+      }
+      if (groupItemRef.current.position.y + (boxSize.current.y / 2.4) > ((boxSize.current.y / 2.4) - h) + fixTam) {
+        // console.log('outT-L')
+        keyLockMesh = true
+        fixDragY -= 0.5
+      } else if (-(groupItemRef.current.position.y + (boxSize.current.y / 2.4)) > (Math.floor(((boxSize.current.y / 2.4) - h) + fixTam))) {
+        // console.log('outT-R')
+        keyLockMesh = true
+        fixDragY += 0.5
+      } else {
+        //console.log('in')
+        keyLockMesh = false
+
+      } */
+  
+
+
+    }
+    if(boxSize.current !==null){
+      groupItemRef.current.position.x = THREE.MathUtils.damp(
+        groupItemRef.current.position.x,
+        posDrag.current.x - (boxSize.current.x / 2) + fixDragX,
+        5,
+        delta
+      );
+      groupItemRef.current.position.y = THREE.MathUtils.damp(
+        groupItemRef.current.position.y,
+        -posDrag.current.y - (boxSize.current.y / 2) + fixDragY,
+        5,
+        delta
+      );
+      let offsetdrag = groupItemRef.current.position
+      .clone()
+      .sub(new THREE.Vector2(posDrag.current.x - (boxSize.current.x / 2) + fixDragX, -posDrag.current.y - (boxSize.current.y / 2) + fixDragY))
+      .multiplyScalar(-0.25)
+        localStorage.setItem('drag-x', offsetdrag.x)
+        localStorage.setItem('drag-y', offsetdrag.y)
+    }
+    
+    //console.log(positionUpdates.current)
+    if (positionUpdates.current && positionUpdates.current.length > COUNT_ITEMS) {
+   
+      positionUpdates.current.forEach(({ object, factor }) => {
+       updateValueShader(object, countTime / 2)
+      })
+    }
+  })

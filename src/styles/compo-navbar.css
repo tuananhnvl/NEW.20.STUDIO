@@ -1,6 +1,4 @@
-.navbar {
 
-}
 .navbar .ic-nav-open {
     display:flex;
     position:fixed;
@@ -34,6 +32,7 @@
     opacity:0;
     transition: 500ms;
     pointer-events: none;
+    
 }
 
 .modal-nav-view .bg-move {
@@ -69,79 +68,91 @@
     z-index:999;
 }
 .modal-nav-view .detail .list-item {
-    width:100vw;
     height:80vh;
-    display:flex;
-    padding: 3rem 6rem;
-    position: relative;
-    box-sizing: border-box;
 }
 .modal-nav-view .detail .info-company {
-    width:100vw;
+   
     height:20vh;
-    display:flex;
-    padding: 3rem 6rem;
-    box-sizing: border-box;
-    opacity:0;
+
 }
 .modal-nav-view .detail .list-item .item-menu,
-.modal-nav-view .detail .list-item .img,
-.modal-nav-view .detail .info-company .logo,
-.modal-nav-view .detail .info-company .info{
-    width:50%;
+.modal-nav-view .detail .list-item .img
+{
+    
     height:100%;
     display:flex;
+    overflow: hidden;
 }
 .modal-nav-view .detail .info-company .logo {
-    align-items: end;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row: 1;
+    width: 100%;
+    display: flex;
 }
 .modal-nav-view .detail .info-company .logo > a {
-    height:fit-content;
+    display: block;
+    height: fit-content;
+    width: 100%;
+    margin: auto;
 }
-.modal-nav-view .detail .info-company .info > div {
-    display:flex;
-    flex-wrap:wrap;
+.modal-nav-view .detail .info-company .info1 {
+    grid-column-start: 6;
+    grid-column-end: 8;
+    grid-row: 1;
+    display: flex;
+   
+    align-self: center;
+    flex-direction: column;
+    width: 100%;
 }
-.modal-nav-view .detail .info-company .info > div span {
-    width:50%;
-    font-family: PoiretOne;
-    font-size: 20px;
+.modal-nav-view .detail .info-company .info2 {
+    grid-column-start: 8;
+    grid-column-end: 10;
+    grid-row: 1;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 100%;
+}
+.modal-nav-view .detail .info-company .info1 > span,
+.modal-nav-view .detail .info-company .info2 > span {
+
+
+    font-family: 'PoiretOne';
+    font-size: 18px;
     font-weight: 400;
-    line-height: 23px;
+    line-height: 150%;
     letter-spacing: 0.01em;
     text-align: left;
     color:whitesmoke;
+
 }
-@media (max-width:1540px) {
-    .modal-nav-view .detail .list-item .item-menu a p {
-        font-size: 64px !important;
-    }
-}
-@media (max-width:1300px) {
-    .modal-nav-view .detail .list-item .item-menu a p {
-        font-size: 42px !important;
-    }
-}
-@media (max-width:568px) {
-    .modal-nav-view .detail .list-item .item-menu a p {
-        font-size: 14px !important;
-    }
-}
+
+
 .modal-nav-view .detail .list-item .item-menu {
     display:flex;
     flex-direction: column;
     justify-content: center;
+    grid-column-start: 2;
+    grid-column-end: 6;
+    width: 100%;
+    grid-row: 1;
+    position: relative;
+    z-index: 15;
 }
 .modal-nav-view .detail .list-item .item-menu a {
     display:flex;
-    height:calc((65vh) / 5);
+    /* height:calc((65vh) / 5); */
+    height: fit-content;
     align-items: center;
     overflow:hidden;
     cursor:pointer;
+    margin: 1rem 0;
 }
 .modal-nav-view .detail .list-item .item-menu a p {
     font-family: 'NVNValky';
-    font-size: 64px;
+    font-size: 68px;
     font-weight: 400;
     color: white;
     font-weight: 400;
@@ -152,19 +163,24 @@
     transform:translateY(100px);
     margin: 0;
 }
-.modal-nav-view .detail .list-item .img >div {
-    display:block;
+.modal-nav-view .detail .list-item .img  {
+    grid-column-start: 6 ;
+    grid-column-end: 10 ;
+    grid-row: 1;
     overflow:hidden;
-    position:relative;
+    width:100%;
+    height:79%;
+    margin: auto;
 }
-.imgNavBanner {
+.maskImg {
     position:relative;
+
     width:100%;
     height:100%;
-    opacity:0;
+   
     overflow:hidden;
 }
- .imgNavBanner:before{
+ .maskImg:before{
     content:"";
     position:absolute;
     top:0;
@@ -172,12 +188,12 @@
     width:100%;
     height:100%;
     background:rgb(0,0,0,.5);
-    z-index:15;
+    z-index:11;
     
 } 
-.modal-nav-view .detail .list-item .img >div img {
+.modal-nav-view .detail .list-item .img .maskImg img {
     width:100%;
-    height:auto;
+    height:100%;
     display:block;
     z-index:10;
 

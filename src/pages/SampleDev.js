@@ -5,23 +5,7 @@ import Contact from '../components/Contact'
 import usePageTransition from '../hooks/usePageTransition.js'
 import GalleryInside from '../components/GalleryInside';
 import useLocoScrollTrigger from '.././hooks/useLocoScrollTrigger'
-const images = {
-    image1: require('.././asset/sampledev/1.png'),
-    image3: require('.././asset/sampledev/2.png'),
-    image2: require('.././asset/sampledev/3.png'),
-    image4: require('.././asset/sampledev/4.png'),
-    image5: require('.././asset/sampledev/5.png'),
-    image6: require('.././asset/sampledev/6.png'),
-    image7: require('.././asset/sampledev/7.png'),
-    image11: require('.././asset/sampledev/11.png'),
-    image12: require('.././asset/sampledev/12.png'),
-    image21: require('.././asset/sampledev/21.png'),
-    image22: require('.././asset/sampledev/22.png'),
-    image23: require('.././asset/sampledev/23.png'),
-    image24: require('.././asset/sampledev/24.png'),
-    image25: require('.././asset/sampledev/25.png'),
-    image26: require('.././asset/sampledev/26.png'),
-};
+import { images } from '.././utils/load-images.js';
 
 export default function SampleDev() {
     
@@ -32,8 +16,8 @@ export default function SampleDev() {
     return (
         <>
 
-<section  data-scroll-container className='contcainer'>
-                <div className='dev_product--banner' >
+<section  data-scroll-container className='container'>
+                <div className='sample-dev--banner' >
                     <div className='pin-menu'>
                         <button value='/' onClick={redirectPage}>Home</button>
                         <button value='/sampledev' onClick={redirectPage}>Sample Dev</button>
@@ -46,7 +30,7 @@ export default function SampleDev() {
                         <span>Xây dựng</span>
                         <span>Thiết kế</span>
                     </div>
-                    <div className='dev_product--bannersub' >
+                    <div className='sample-dev--bannersub' >
                         <span className='sub'>Chúng tôi giúp khách hàng biến ý tưởng của họ thành sản phẩm hoàn thiện.</span>
                         <div className='sub-next'>
                             <h3>Cách chúng tôi thực hiện</h3>
@@ -64,32 +48,32 @@ export default function SampleDev() {
                 </div>
 
                 <div className="wapper-step-dev_product" >
-                    <section className='step1-dev_products consuctor--gridsys steps-dev_products' >
+                    <div className='step-config step1-sample_dev wrapper-grid10hook steps-sample_dev' >
                         <div className='img' >
-                            <img data-scroll data-scroll-speed="-1" src={images.image1} alt="" />
+                            <img src={images.sample1} alt="" />
                         </div>
                         <div className='text' >
-                            <div className="title--sampledev" >
+                            <div className="title" >
                                 Nghiên&nbsp;cứu và phát&nbsp;triển
                             </div>
-                            <div className="des--sampledev">
+                            <div className="des">
                                 Đội ngũ của 20Studio nghiên cứu về vải và phụ kiện, phát triển các quy trình, thêu, in ấn, hoàn thiện và phương pháp giặt độc đáo bằng cả tay nghề và máy móc hiện đại, để tạo ra sản phẩm độc đáo và chất lượng.
                             </div>
                         </div>
                         <div className='img-behind'  >
-                            <img src={images.image3} alt='' />
+                            <img src={images.sample1behind1} alt='' />
                         </div>
-                    </section>
+                    </div>
 
-                    <div className='step2-dev_products consuctor--gridsys steps-dev_products--fit' >
+                    <div className='step-config step2-sample_dev wrapper-grid10hook ' >
                         <div className='img'>
-                            <img src={images.image4} alt="" />
+                            <img src={images.sample2} alt="" />
                         </div>
                         <div className='text' >
-                            <div className="title--sampledev"  >
+                            <div className="title"  >
                                 Kỹ&nbsp;thuật tinh&nbsp;xảo 
                             </div>
-                            <div className="des--sampledev"  >
+                            <div className="des"  >
                                 Chúng tôi tại 20studio sẵn sàng tạo ra các quy trình độc đáo giúp khách hàng thúc đẩy sự sáng tạo và khám phá những điều mới lạ.
                             </div>
                             <div className='detail' >
@@ -107,44 +91,44 @@ export default function SampleDev() {
                             </div>
                         </div>
                         <div className='img-behind s2-img1' data-scroll data-scroll-speed="-.2">
-                            <img src={images.image11} alt='' />
+                            <img src={images.sample2behind1} alt='' />
                         </div>
                         <div className='img-behind s2-img2' data-scroll data-scroll-speed="1">
-                            <img src={images.image12} alt='' />
+                            <img src={images.sample2behind2} alt='' />
                         </div>
                     </div>
 
-                    <div className='step3-dev_products consuctor--gridsys steps-dev_products' >
+                    <div className='step-config step3-sample_dev wrapper-grid10hook' >
                         <div className='img'>
-                            <img src={images.image5} alt="" />
+                            <img src={images.sample3} alt="" />
                         </div>
                         <div className='text'>
-                            <div className="title--sampledev">
+                            <div className="title">
                                Dựng rập
                             </div>
-                            <div className="des--sampledev">
+                            <div className="des">
                                 Chuyên viên thiết kế mẫu của chúng tôi sẽ tạo ra các mẫu đẹp cho các loại sản phẩm chính như: áo khoác, váy, áo sơ mi, váy chân váy, quần.
                             </div>
                         </div>
                         <div className='img-behind' data-scroll data-scroll-speed="3">
-                            <img src={images.image6} alt='' />
+                            <img src={images.sample3behind1} alt='' />
                         </div>
                     </div>
 
-                    <div className='step4-dev_products consuctor--gridsys steps-dev_products' >
+                    <div className=' step-config step4-sample_dev wrapper-grid10hook' >
                         <div className='img'>
-                            <img src={images.image3} alt="" />
+                            <img src={images.sample2} alt="" />
                         </div>
                         <div className='text'>
-                            <div className="title--sampledev">
+                            <div className="title">
                             May đo chi tiết
                             </div>
-                            <div className="des--sampledev">
+                            <div className="des">
                             Sau giai đoạn mô hình và cắt, các thợ may của chúng tôi sẽ tạo ra mẫu nguyên mẫu đầu tiên, được điều chỉnh và hoàn thiện trước khi được khách hàng chấp nhận.
                             </div>
                         </div>
                         <div className='img-behind'>
-                            <img src={images.image3} alt="" />
+                            <img src={images.sample2} alt="" />
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,44 @@
 
 
-@media (max-width:868px) {
+@media (max-width:1000px) {
+ /* ====================================== HOME PAGE =================================== */
+ .section-hero .tit {
+    font-size: 70px !important;
+  }
+  .services-part1,  .services-part2,  .services-part3 {
+    grid-column-start: 1!important;
+    grid-column-end: 5!important;
+
+  }
+  .section-services .tit,.section-gallery .tit {
+    font-size: 70px !important;
+  }
+/* ====================================== END END END HOME PAGE =================================== */
+    /* ====================================== NAVBAR =================================== */
+    .modal-nav-view .detail .list-item .item-menu {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+    .modal-nav-view .detail .list-item .img {
+        grid-column-start: 5 !important;
+        grid-column-end: 8 !important;
+    }
+    /* ====================================== END END END NAVBAR =================================== */
+   
+    /* ====================================== CONTACT PAGE =================================== */
+    
+    .content-contacts-page .info {
+        grid-column-start: 1 !important;
+        grid-column-end: 6 !important;
+    }
+    .content-contacts-page .fake-div {
+        grid-column-start: 5 !important;
+        grid-column-end: 8 !important;
+    }
+    /* ====================================== END END END CONTACT PAGE =================================== */
+       
+    
+    
     /* gallery redirect section */
     .gallery-togo .text-svg svg {
         width: 60vw !important;
@@ -13,13 +51,15 @@
         min-height: 80% !important;
     }
     .contact-section .detail .info {
-        height: 20% !important;
+        height: 10% !important;
     }
     .contact-section .detail .info .gr-info {
-        padding: 0 0 0 20px!important;
+        padding: 0!important;
+        display: flex;
+        justify-content: space-around;
     }
     .contact-section .detail .info span {
-        font-size: 20px!important;
+        font-size: 15px!important;
     }
     .contact-section .detail {
         flex-direction: column-reverse!important;
@@ -31,126 +71,331 @@
         font-size: 68px!important;
        
     }
+    .contact-section .detail form > div:nth-child(1), .contact-section .detail form > div:nth-child(2), .contact-section .detail form > div:nth-child(3) {
+        height:15% !important;
+    }
+    .contact-section .detail form > div:nth-child(4) {
+        height:40% !important;
+    }
+    
     .loop-holder__text {
         font-size: 40px!important;
     }
     /* page deveploment products */
-    .dev_product--banner .text span {
+    .sample-dev--banner .text span {
         font-size: 100px !important;
     }
-    .dev_product--bannersub a.sub {
+    .sample-dev--bannersub div.sub {
         max-width: 75vw !important;
     }
-     .step2-dev_products .text, .step3-dev_products .text, .step4-dev_products .text {
-        
+ 
+
+    .step-config .title{
+        font-size: 56px !important;
+        text-align: left !important;
     }
-    .step1-dev_products .text {
-        left:33.3333% !important;
-        width: 60% !important;
+    .step-config .des {
+        font-size: 20px !important;
+        text-align: left !important;
     }
-    .title--sampledev{
-        font-size: 30px !important;
-    }
-    .des--sampledev{
-        font-size: 15px!important;
-    }
-    .step1-dev_products .img {
+  
+
+    .step1-sample_dev .img {
         grid-column-start: 1 !important;
-        grid-column-end: 3 !important;
-      height: 80vh !important;
+        grid-column-end: 5 !important;
+    
     }
-    .step1-dev_products .img img {
-        margin-left: 0 !important;
-        
+    .step1-sample_dev .text {
+        grid-column-start: 4 !important;
+        grid-column-end: 8 !important;
+    
     }
-    .step1-dev_products .img-behind {
-        right: 0 !important;
-        left: unset !important;
-        width: calc(33.333% /2 *3) !important;
-        
+    .step2-sample_dev .img {
+        grid-column-start: 1 !important;
+        grid-column-end: 6 !important;
     }
 
 
-    .step2-dev_products .text {
-        top: 50vh !important;
+    .step2-sample_dev .text {
+        grid-column-start: 3 !important;
+        grid-column-end: 7 !important;
     }
-    .step2-dev_products .detail ul li a {
+    .step2-sample_dev .detail ul li a {
         font-size: 22px !important;
         padding:0 !important;
 
     }
-    .step2-dev_products .img img {
-        width: auto !important;
-    height: 80vh !important;
-    }
-    .step2-dev_products .detail {
-        grid-column-start: 1!important;
-        grid-column-end: 4!important;
-    }
-    .step2-dev_products .img {
-        width: 66.666% !important;
+    .step3-sample_dev .img {
+        grid-column-start: 3 !important;
+        grid-column-end: 8 !important;
     }
 
-    .step4-dev_products .img img {
-        width: 100% !important;
+    .step3-sample_dev .text {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
     }
-    .step4-dev_products .img {
-        height: fit-content !important;
+
+
+    .step4-sample_dev .img {
+        grid-column-start: 3 !important;
+        grid-column-end: 7 !important;
     }
-    .step4-dev_products .text {
-        top: 291px !important;
+    .step4-sample_dev .text {
+        grid-column-start: 2 !important;
+        grid-column-end: 6 !important;
     }
-    .step4-dev_products .img-behind {
+    .step4-sample_dev .img-behind {
         height: fit-content!important;
         top: -316px!important;
     }
-    .step4-dev_products .img-behind img {
+    .step4-sample_dev .img-behind img {
         width: 100% !important;
         height: auto !important;
     }
 
 
     /* page products */
-    .step1-products .text, .step2-products .text, .step3-products .text, .step4-products .text, .step5-products .text {
-        max-width: 75vw !important;
-        
-    }
-    .step1-products .title, .step2-products .title, .step3-products .title, .step4-products .title, .step5-products .title {
-        font-size: 70px !important;
-        text-align: left !important;
-    }
-    .step1-products .des, .step2-products .des, .step3-products .des, .step4-products .des, .step5-products .des {
-        font-size: 20px !important;
-        text-align: left !important;
-    }
+ 
+
     .products_banner-sub a.sub {
         max-width: 75vw !important;
     }
     .step1-products .img {
-        grid-column-end: 3!important;
+        grid-column-start: 3!important;
+        grid-column-end: 8!important;
+    }
+    .step1-products .text {
+        grid-column-start: 1!important;
+        grid-column-end: 5!important;
     }
     .step2-products .img {
         grid-column-start: 2!important;
-        grid-column-end: 4!important;
-        height: 699px!important;
+        grid-column-end: 6!important;
+    
     }
-
+    .step2-products .text {
+        grid-column-start: 4!important;
+        grid-column-end: 8!important;
+    }
     .step3-products .img{
-        grid-column-end: 3!important;
+        grid-column-start: 1!important;
+        grid-column-end:6!important;
         
     }
     .step3-products .text {
-        top: 95% !important;
+        grid-column-start: 4!important;
+        grid-column-end: 8!important;
     }
 
     .step4-products .img {
         grid-column-start: 2!important;
-        
+        grid-column-end: 6!important;
+    }
+    .step4-products .text {
+        grid-column-start: 4!important;
+        grid-column-end: 8!important;
     }
 
 }
 @media (max-width:567px) {
-    .containerScroll {
-        opacity: 0 !important;
+/* CONTACT */
+.location {
+    padding: 0 !important;
+}
+.location .map {
+    display:none !important;
+}
+.location ul.info {
+    width: 100% !important;
+}
+.content-contacts-page .info .social {
+    justify-content: center !important;
+}
+.content-contacts-page .info .detail p.tit {
+    width: 100%  !important;
+}
+    .section-hero {
+        height:auto !important;
     }
+    .section-hero .des {
+        font-size: 16px !important;
+        line-height: 150%!important;
+    }
+    .section-hero .tit {
+        font-size: 36px !important;
+    }
+    .section-services .tit,.section-gallery .tit {
+        font-size: 36px !important;
+    }
+    .section-services .des,.section-services .des {
+        font-size: 16px !important;
+        line-height: 120%!important;
+    }
+    /* style global */
+    .products_banner-sub {
+        padding-bottom: 72px!important;
+    }
+    .step-config {
+        padding: 0 0 72px 0 !important;
+    }
+    .products_banner span h2 {
+        font-size:15vw  !important;
+    }
+    .products_banner .img {
+        width: 70vw !important;
+    height: 70vh !important;
+    }
+    .products_banner-sub div.sub {
+        font-size: 36px !important;
+        max-width: 80vw !important;
+    }
+    .products_banner-sub div.sub-next {
+        font-size: 36px !important;
+    }
+    .products_banner-sub div.sub-next svg {
+        width: 36vw!important;
+    }
+    .products_banner .img img {
+        object-fit: none;
+    object-position: right;
+    }
+    /* ====================================== NAVBAR =================================== */
+    .modal-nav-view .detail .list-item .item-menu {
+        grid-column-start: 1 !important;
+        grid-column-end: 4 !important;
+    }
+    .modal-nav-view .detail .list-item .img {
+        grid-column-start: 2 !important;
+        grid-column-end: 5 !important;
+    }
+    .modal-nav-view .detail .list-item .item-menu a p {
+        font-size: 48px !important;
+    }
+
+    /* ====================================== END END END NAVBAR =================================== */
+   
+       /* ====================================== CONTACT PAGE =================================== */
+    .banquyen {
+        text-align: center !important;
+    }
+    .contact-section .title h2 {
+        font-size: 42px!important;
+    }
+       .content-contacts-page .info {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+    .content-contacts-page .fake-div {
+        grid-column-start: 2 !important;
+        grid-column-end: 5 !important;
+    }
+    /* ====================================== END END END CONTACT PAGE =================================== */
+       
+
+    /* config step-config // of sectiob step */
+    .step-config .title{
+        font-size: 36px !important;
+        text-align: left !important;
+    }
+    .step-config .des {
+        font-size: 15px !important;
+        text-align: left !important;
+    }
+  
+  /* PAGE SAMPLE DEV (STEP SECTION) */
+    .wapper-step-dev_product .img-behind {
+        display:none !important;
+    }
+    .step1-sample_dev .img {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+
+    }
+    .step1-sample_dev .text {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+
+    }
+    .step2-sample_dev .img {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+
+
+    .step2-sample_dev .text {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+    .step2-sample_dev .detail ul li span {
+        font-size: 20px !important;
+        padding:5px 0 !important;
+
+    }
+    .step3-sample_dev .img {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+
+    .step3-sample_dev .text {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+
+
+    .step4-sample_dev .img {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+    .step4-sample_dev .text {
+        grid-column-start: 1 !important;
+        grid-column-end: 5 !important;
+    }
+    .step4-sample_dev .img-behind {
+        height: fit-content!important;
+        top: -316px!important;
+    }
+    .step4-sample_dev .img-behind img {
+        width: 100% !important;
+        height: auto !important;
+    }
+ /* PAGE PRODUCT (STEP SECTION) */
+ 
+    .step1-products .img {
+        grid-column-start: 2!important;
+        grid-column-end: 5!important;
+    }
+    .step1-products .text {
+        grid-column-start: 1!important;
+        grid-column-end: 4!important;
+    }
+    .step2-products .img {
+        grid-column-start: 1!important;
+        grid-column-end: 5!important;
+        height: 50vh !important;
+    }
+    .step2-products .text {
+        grid-column-start: 2!important;
+        grid-column-end: 5!important;
+    }
+    .step3-products .img{
+        grid-column-start: 1!important;
+        grid-column-end:4!important;
+        
+    }
+    .step3-products .text {
+        grid-column-start: 2!important;
+        grid-column-end: 5!important;
+    }
+
+    .step4-products .img {
+        grid-column-start: 2!important;
+        grid-column-end: 5!important;
+    }
+    .step4-products .text {
+        grid-column-start: 1!important;
+        grid-column-end: 4!important;
+    }
+
+
+ 
 }

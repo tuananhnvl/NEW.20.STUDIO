@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useLayoutEffect, useRef } from 'react'
 import '.././styles/page-products.css'
 import Contact from '../components/Contact'
 import usePageTransition from '.././hooks/usePageTransition';
@@ -7,27 +7,18 @@ import gsap, { Power2 } from 'gsap'
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import useLocoScrollTrigger from '.././hooks/useLocoScrollTrigger'
-
+import SplitType from 'split-type'
 import '.././styles/svg-style.css'
-const images = {
-    image1: require('.././asset/products/1.png'),
-    image3: require('.././asset/products/2.png'),
-    image2: require('.././asset/products/3.png'),
-    image4: require('.././asset/products/4.png'),
-    image5: require('.././asset/products/5.png'),
-    image6: require('.././asset/products/6.png'),
-    image31: require('.././asset/products/31.png'),
-    image32: require('.././asset/products/32.jpg'),
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { images } from '.././utils/load-images.js';
 
-};
-
-gsap.registerPlugin(CSSRulePlugin, MotionPathPlugin);
+gsap.registerPlugin(ScrollTrigger);
 export default function Products() {
     console.log('==============Products render================')
     const initScroll = useLocoScrollTrigger(true)
     const { redirectPage } = usePageTransition();
     const [offTask,setOffTask] = useState(false)
-     
+    const containerRef = useRef(null)
     useEffect(() => {
         if(!offTask) {return}
         let targets = gsap.utils.toArray('.box-trans');
@@ -119,25 +110,64 @@ export default function Products() {
 
 
     }, [offTask])
-
-
+    const animData = {
+        "longTextSplit": {
+            typeSplit : 'words',
+            propsFire : {opacity: 1,y:0, duration: 0.5, stagger:0.1},
+            propsPrev : {opacity: 0,y:-100}
+        },
+        "headingSplit": {
+            typeSplit : 'chars',
+            propsFire : {opacity: 1,y:0, duration: 0.5, stagger:0.1},
+            propsPrev : {opacity: 0,y:-100}
+        }
+    };
+    useEffect(() => {
+      
+        let ctx = gsap.context(() => {
+            for (let target in animData) {
+              let { typeSplit, propsPrev ,propsFire } = animData[target];
+              let arrobj = new SplitType(`#${target}`, { types: typeSplit });
+          
+              gsap.fromTo(arrobj[typeSplit],{
+                ...propsPrev,
+              }, {
+                scrollTrigger: {
+                  trigger: `#${target}`,
+                  scroller: containerRef.current,
+                  //markers: true,
+                  start: 'top 69%',
+                  end: 'bottom bottom',
+                  toggleActions: 'play none none none',
+                },
+                ...propsFire,
+              });
+            }
+          });
+          //return () => ctx.revert();
+      }, [containerRef]);
     return (
      
              
-        <section  data-scroll-container className='container'>
-               <div className='pin-menu'>
+        <section  data-scroll-container className='container' ref={containerRef}>
+             {/*   <div className='pin-menu'>
                     <button value='/' onClick={redirectPage}>Home</button>
                         <button value='/sampledev' onClick={redirectPage}>Sample Dev</button>
                         <button value='/products' onClick={redirectPage}>Products</button>
                         <button value='/contact' onClick={redirectPage}>Contact</button>
-                    </div>
+                    </div> */}
+                 
                 <div className='products_banner' >
-                    <div><img src={images.image1} alt='' /></div>
-                    <h2>SẢN XUẤT</h2>
+                    <div className='img'><img src={images.bannerproduct} alt='' /></div>
+                    <span>
+                        <h2 id='headingSplit'>SẢN XUẤT</h2>
+                    </span>
+                  
+                   
                 </div>
-
+          
                 <div className='products_banner-sub' >
-                    <div className='sub'>Từ nguyên liệu đến thành phẩm. Chúng tôi có thể cung cấp dịch vụ sản xuất thời trang.</div>
+                    <div className='sub' ><p id='longTextSplit'>Từ nguyên liệu đến thành phẩm. Chúng tôi có thể cung cấp dịch vụ sản xuất thời trang.</p></div>
                     <div className='sub-next'>
                         <h3>Quy trình làm việc</h3>
                         <svg data-name="arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143.25 244.55">
@@ -153,9 +183,9 @@ export default function Products() {
                 </div>
                 {/* list step ( 5 step ) */}
                 <div className='wrapper-step-product'>
-                    <div className='step1-products consuctor--gridsys'>
+                    <div className='step-config step1-products wrapper-grid10hook'>
                         <div className='img'>
-                            <img src={images.image3} alt="" />
+                            <img src={images.product1} alt="" />
                         </div>
                         <div className='text'>
                             <div className="title">
@@ -167,9 +197,9 @@ export default function Products() {
                         </div>
                     </div>
 
-                    <div className='step2-products consuctor--gridsys'>
+                    <div className=' step-config step2-products wrapper-grid10hook'>
                         <div className='img'>
-                            <img src={images.image2} alt="" />
+                            <img src={images.product2} alt="" />
                         </div>
                         <div className='text'>
                             <div className="title">
@@ -180,13 +210,13 @@ export default function Products() {
                             </div>
                         </div>
                         <div className='img-behind'>
-                                <img src={images.image1} alt="" />
+                                <img src={images.product3} alt="" />
                         </div>
                     </div>
 
-                    <div className='step3-products consuctor--gridsys'>
+                    <div className='step-config step3-products wrapper-grid10hook'>
                         <div className='img'>
-                            <img src={images.image4} alt="" />
+                            <img src={images.product3} alt="" />
                         </div>
                         <div className='text'>
                             <div className="title">
@@ -197,10 +227,10 @@ export default function Products() {
                             </div>
                         </div>
                     </div>
-
-                    <div className='step4-products consuctor--gridsys'>
+       
+                    <div className='step-config step4-products wrapper-grid10hook'>
                         <div className='img'>
-                            <img src={images.image5} alt="" />
+                            <img src={images.product4} alt="" />
                         </div>
                         <div className='text'>
                             <div className="title">

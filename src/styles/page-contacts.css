@@ -1,12 +1,9 @@
 .content-contacts-page {
-    position: relative;
-    width: calc(var(--maxW1440));
+
+  
     margin: auto;
     height:calc(100vh - 15vh);
-    padding: 0 8vw;
-    display: flex;
-    align-items: center;
-  
+ 
 }
 
 .loop-holderrr {
@@ -16,6 +13,7 @@
     height: fit-content;
     overflow: hidden;
     top:0;
+    z-index: 3;
     margin-left:-200px;
 }
 
@@ -28,22 +26,26 @@
 
 
 }
+.content-contacts-page .loop-holderrr {
+    opacity: 0.2;
+}
 .content-contacts-page .info {
     position: relative;
-    width: 60%;
-    height: 100%;
+   grid-column-start: 2;
+   grid-column-end: 7;
+   grid-row: 1;
+   z-index: 5;
 }
 .content-contacts-page .info .detail {
     height: 35vh;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    align-items: self-end;
 }
 .content-contacts-page .info .detail p.tit {
     font-family: 'Jose';
     font-size: 30px !important;
     width: 79%!important;
-    line-height: 130%;
+    line-height: 110%;
     margin :0;
 }
 .content-contacts-page .info .detail p{
@@ -60,53 +62,40 @@
 
 .content-contacts-page .fake-div {
     position: relative;
-    width: 40%;
-    height: 100%;
-}
-.content-contacts-page .fake-div a:nth-child(1) {
-    position: absolute;
-    top:0;
-    left:50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    
-}
-
-.content-contacts-page .fake-div > a {
-   
-    width: 100%;
-    height: auto;
+    grid-column-start: 7;
+    grid-column-end: 10;
+    grid-row: 1;
     background: url('../asset/gallery3.png');
     background-size: cover;
+    z-index: 1;
 }
+
+
 .content-contacts-page .info .banquyen {
     position: absolute;
     bottom: 0;
     left: 0;
-
+    width:100%;
     font-family: Jose;
-font-size: 16px;
-font-weight: 300;
-line-height: 23px;
-letter-spacing: 0em;
-text-align: left;
-
-
-
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
 }
 .content-contacts-page .info .social {
     display:flex;
+    flex-wrap: wrap;
+    justify-content: left;
 }
-.content-contacts-page .info .social a {
+.content-contacts-page .info .social span {
     font-family: Jose;
 font-size: 16px;
 font-weight: 300;
 line-height: 23px;
 letter-spacing: 0em;
 text-align: left;
-margin-right:32px;
+margin-right:20px;
 }
 
 
@@ -149,7 +138,7 @@ margin-right:32px;
     height: 40vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+   /*  justify-content: flex-end; */
 }
 .location {
     display: flex;
@@ -165,16 +154,16 @@ margin-right:32px;
     list-style: none;
     width: 40%;
     margin:0;
-    padding:0;
+    padding:1rem 0;
 }
 .location ul.info li {
     font-family: 'Jose';
     font-size: 16px;
     font-weight: 300;
-    line-height: 130%;
+    line-height: 100%;
     letter-spacing: 0em;
     text-align: left;
-    padding-bottom: 1rem;
+    padding-bottom: 5px;
 
 }
 .location ul.info li.btn a {

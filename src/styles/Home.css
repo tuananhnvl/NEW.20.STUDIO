@@ -13,8 +13,25 @@
 .section-hero {
     background: url('../asset/home/1.jpg');
     background-size: cover;
-    filter: brightness(0.5);
-
+    z-index: 1;
+    width: 100%;
+    height: 172vh;
+    overflow: hidden;
+    position: relative;
+}
+.section-hero:after {
+    content: '';
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.534);
+    z-index: 5;
+}
+.section-hero > div {
+    position:relative;
+    z-index: 10;
 }
 .section-hero .des {
     grid-row:1;
@@ -36,7 +53,7 @@
     grid-column-start: 1;
     grid-column-end: 7;
     font-family: NVNValky;
-    font-size: 120px;
+    font-size: 100px;
     font-weight: 400;
     line-height: 150%;
     letter-spacing: 0.01em;
@@ -77,11 +94,7 @@
 }
 
 /* SECTION SERVICES */
-.section-services {
-    background: url('../asset/home/2.jpg');
-    background-size:cover;
 
-}
 .section-services .tit {
     grid-row: 1;
     grid-column-start: 1;
@@ -95,7 +108,7 @@
 
 }
 .section-services .tit h2 {
-    margin: 100px 0 50px 0;
+    margin: 150px 0 0 0;
 }
 .section-services .des {
     grid-row: 2;
@@ -108,44 +121,57 @@
     letter-spacing: 0.01em;
     text-align: left;
 }
-.section-services .list {
-    grid-row: 3;
-    grid-column-start: 2;
-    grid-column-end: 4;
+
+.services-part1 {
+    grid-row:3;
+    grid-column-start: 3;
+    grid-column-end: 7;
 }
-.section-services .list ul {
-    list-style: none;
-    padding: 0;
+.services-part2 {
+    grid-row:4;
+    grid-column-start: 7;
+    grid-column-end: 11;
 }
-.section-services .list ul li {
+.services-part3 {
+    grid-row:5;
+    grid-column-start: 4;
+    grid-column-end: 8;
+}
+.kip h2 {
+    font-family: NVNValky;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0;
+}
+.kip p ,.kip ul  li{
     font-family: Jose;
     font-size: 16px;
     font-weight: 300;
     line-height: 24px;
     letter-spacing: 0.01em;
     text-align: left;
-
-    margin-bottom:2rem;
-
+    
 }
-
-
-
+.kip ul {
+    list-style: none;
+    padding-left:0;
+   
+    text-transform: uppercase;
+}
+.kip ul li {
+    padding: 7px 0 0 0;
+}
 /* SECTION GALLERY */
-.section-gallery{
-    height:100vh;
 
-    border: 2px solid red;
-}
 .section-gallery .name-section {
-    height:25vh;
+    height:auto;
     grid-column-start: 1;
     grid-column-end: 11;
 }
-.section-gallery .list-img {
-    height:75vh;
-    overflow:hidden;
-}
+
 .section-gallery .tit {
     grid-row: 1;
     grid-column-start: 1;
@@ -157,11 +183,10 @@
     letter-spacing: 0em;
     text-align: left;
 
-    background:lightblue;
 
 }
 .section-gallery .tit h2 {
-    margin:50px 0 0 0;
+    margin:150px 0 0 0;
 }
 .section-gallery .des {
     grid-row: 2;
@@ -174,8 +199,8 @@
     letter-spacing: 0.01em;
     text-align: left;
 }
-.box-img *  {
-margin:0;
+.section-gallery .pul >div:nth-child(n) {
+    margin: 2rem 0; 
 }
 .section-gallery  .box-img:nth-child(n) {
     background:rgba(0, 0, 255, 0.507);
@@ -188,17 +213,27 @@ margin:0;
     grid-column-start: 2;
     grid-column-end: 7;
 }
+.section-gallery  .box-img.brand1 .img {
+    height:50vh;
+    overflow: hidden;
+}
 .section-gallery  .box-img.brand2{
     position:relative;
     height:fit-content;
     grid-row: 3;
     grid-column-start: 8;
     grid-column-end: 11;
+    top: 35vh;
+}
+.section-gallery  .box-img.brand2 .img {
+    height:360px;
+    overflow: hidden;
 }
 .section-gallery  .box-img.brand3{
     position:relative;
     height:fit-content;
     grid-row: 4;
+    top: 10%;
     grid-column-start: 5;
     grid-column-end: 9;
 }
@@ -206,6 +241,7 @@ margin:0;
     position:relative;
     height:fit-content;
     grid-row: 5;
+    top: -50%;
     grid-column-start: 1;
     grid-column-end: 4;
 }
@@ -215,8 +251,10 @@ margin:0;
   overflow: hidden;
 }
 .section-gallery  .box-img.brand1 img {
-    width:auto;
-    height:80vh;
+    width:100%;
+    height:auto;
+    border: 1px solid white;
+    margin-top:-30%;
 }
 
 
@@ -227,7 +265,9 @@ margin:0;
 }
 .section-gallery  .box-img.brand2 img {
     width:100%;
-    height:30vh;
+    height:auto;
+    border: 1px solid white;
+    margin-top:-100px;
 }
 
 .section-gallery  .box-img.brand3 a {

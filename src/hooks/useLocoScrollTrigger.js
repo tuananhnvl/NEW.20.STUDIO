@@ -2,20 +2,20 @@ import { useEffect } from 'react';
 import LocomotiveScroll from 'locomotive-scroll';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-
+import { useLocation } from "react-router-dom";
 const useLocoScrollTrigger = (start) => {
   gsap.registerPlugin(ScrollTrigger);
-
+  const location = useLocation()
   useEffect(() => {
     if (!start) return;
-  
+    console.log('location')
     const scrollEl = document.querySelector('.container');
     console.log(`:::: ScrollTrigger&Locomotive run!`)
     
     let locoScroll = new LocomotiveScroll({
       el: scrollEl,
       smooth: true,
-      multiplier: 1.2,
+      multiplier: 0.42,
     });
    
     locoScroll.on('scroll', () => ScrollTrigger.update());
@@ -64,7 +64,7 @@ const useLocoScrollTrigger = (start) => {
     };
 
     
-  }, [start]);
+  }, [start,location]);
 };
 
 export default useLocoScrollTrigger;

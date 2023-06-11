@@ -5,3 +5,6 @@
 
 // example shader
 https://experiments.p5aholic.me/
+
+
+// fix all section  on sampledev and product to layoutbox

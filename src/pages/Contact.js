@@ -6,7 +6,7 @@ export default function Contact() {
   return (
 
         <section data-scroll-section  style={{display:'flex',width:'100%',height:'100vh'}}>
-          <div className='content-contacts-page'>
+          <div className='content-contacts-page wrapper-grid10hook'>
             <div className="loop-holderrr">
                <div className="loop-holder__text">Liên lạc&nbsp;-&nbsp;Contact&nbsp;-&nbsp;Bộnjour&nbsp;-&nbsp;Contacno&nbsp;-&nbsp;Get in touch&nbsp;-&nbsp;Ni Hao</div>
                <div className="loop-holder__text">Liên lạc&nbsp;-&nbsp;Contact&nbsp;-&nbsp;Bộnjour&nbsp;-&nbsp;Contacno&nbsp;-&nbsp;Get in touch&nbsp;-&nbsp;Ni Hao</div>
@@ -48,7 +48,7 @@ export default function Contact() {
 
             </div>
             <div className='fake-div'>
-        
+                
             </div>
           </div>
         </section>
