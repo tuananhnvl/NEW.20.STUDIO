@@ -25,6 +25,11 @@ gsap.registerPlugin(ScrollTrigger);
   };
   useEffect(() => {
   //  console.log(initScroll)
+
+    const array = [2,5,9,8,0,1,3]
+    array.sort((a, b) => a - b);
+
+    console.log(array);
     if (sectionGalleryRef.current && 1 == 0) {
       const brand1 = document.getElementById("brand1")
       const brand2 = document.getElementById("brand2")

@@ -46,17 +46,23 @@ html,body {
   
   margin: 0;
   padding: 0;
+  cursor:pointer;
+}
+/* loading 3d */
+.loading3d {
+  color:white;
 }
 /* cursor custom */
-.customCursor {
+#customCursor {
   position: fixed;
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   pointer-events: none;
   z-index: 999;
   background-color: #ffffff;
   border-radius: 50px;
-  transform: translateX(-50%) translateY(-50%);
+  
+  will-change: transform;
 }
 /* FOR GSAP OPTIMAZE  */
 .imgLargeNav,#bgbot,#bgtop,.modal-nav-view,.maskImg,.info-company,.maskImg:before,.modal-nav-view .detail .list-item .item-menu a p {
@@ -496,10 +502,10 @@ border-bottom: 1px solid white;
 /*  config gallery redirct */
 /* gallery section redriect */
 .gallery-togo  {
-  height: 100vh;
-  position:relative;
-  display:flex;
- 
+  height: 90vh;
+  border: 1px solid white ;
+  position: relative;
+  display: flex;
   overflow: hidden;
 }
 .gallery-togo .text-svg {

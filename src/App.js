@@ -1,10 +1,10 @@
-import React, {lazy, useEffect} from 'react'
+import React, {useRef, useEffect,useCallback} from 'react'
 import './styles/App.css';
 import './styles/locomotive-scroll.css';
 import './styles/reponsive-css.css'
 import Navbar from './components/Navbar';
 import Grid10 from './components/Grid10'
-import './fonts/Marcellus-Regular.ttf';
+
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -16,41 +16,42 @@ import PageNotFound from './pages/PageNotFound'
 import DreiScroll from './pages/DreiScroll'
 
 
-
-
 function App() {
-  console.log('C:: App Render !')
-  const location = useLocation()
+  const { pathname } = useLocation();
+  const mousePos = useRef({ x: 0, y: 0 });
+  const cursorRef = useRef();
+  const lerpSpeed = 0.8;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  const lerp = useCallback((min, max, value) => {
+    return (min - max) * value + max;
+  }, []);
+
+  const updateCursor = useCallback(() => {
+    cursorX = lerp(cursorX, mousePos.current.x, lerpSpeed);
+    cursorY = lerp(cursorY, mousePos.current.y, lerpSpeed);
+    cursorRef.current.style.transform = `translate3d(${cursorX - 21}px, ${cursorY -21}px, 0)`;
+    requestAnimationFrame(updateCursor);
+  }, [lerp, cursorRef, lerpSpeed]);
+
   useEffect(() => {
-    const circle = document.querySelector(".customCursor")
-    let mouseX = 0
-    let mouseY = 0
-    let cursorX = 0;  
-    let cursorY  = 0;
-    const lerpSpeed = 0.8;
-
-    function updateCursor(){
-      cursorX = lerp(cursorX, mouseX, lerpSpeed)
-      cursorY = lerp(cursorY, mouseY, lerpSpeed)
-      circle.style.top = cursorY + "px"
-      circle.style.left = cursorX + "px"
-      requestAnimationFrame(updateCursor)
+    function handleMouseMove(event) {
+      mousePos.current.x = event.clientX;
+      mousePos.current.y = event.clientY;
     }
 
-    function lerp(min, max, value){
-      return (min - max) * value + max 
-    }
-
-    window.addEventListener("mousemove",function(event){
-      mouseX = event.clientX
-      mouseY = event.clientY
-    })
+    window.addEventListener('mousemove', handleMouseMove);
 
     updateCursor();
-  },[location])
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [updateCursor]);
   return (
     <>
-      <div class="customCursor"></div>
+      <div ref={cursorRef} id="customCursor"></div>
       <Navbar />
       <Grid10 />
       <main >

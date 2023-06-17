@@ -24,7 +24,7 @@ export default function GalleryInside() {
         gsap.to(listEl, {
             duration:1
         })
-    },galleryInsideRef)
+    },[galleryInsideRef])
   return (
     <div className='gallery-togo' ref={galleryInsideRef}>
     <div className='text-svg'>

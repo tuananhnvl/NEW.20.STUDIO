@@ -17,9 +17,7 @@
   align-items: center;
   justify-content: center;
 }
-a {
-  cursor:pointer;
-}
+
 #transition-section h2 {
   font-family:"Marcellus";
   font-size:5rem;

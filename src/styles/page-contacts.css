@@ -43,9 +43,9 @@
 }
 .content-contacts-page .info .detail p.tit {
     font-family: 'Jose';
-    font-size: 30px !important;
+    font-size: 36px !important;
     width: 79%!important;
-    line-height: 110%;
+    line-height: 130%;
     margin :0;
 }
 .content-contacts-page .info .detail p{
@@ -62,14 +62,24 @@
 
 .content-contacts-page .fake-div {
     position: relative;
-    grid-column-start: 7;
+    grid-column-start: 6;
     grid-column-end: 10;
     grid-row: 1;
     background: url('../asset/gallery3.png');
     background-size: cover;
     z-index: 1;
 }
-
+.content-contacts-page .fake-div:before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(227,227,227,0.05646008403361347) 30%, rgba(255,255,255,0) 100%);
+    z-index:3;
+}
 
 .content-contacts-page .info .banquyen {
     position: absolute;
@@ -107,14 +117,18 @@ margin-right:20px;
 .sendInfo * {
     background:transparent;
     color:white;
+    font-family: 'Jose';
 }
 .sendInfo input {
-    border-bottom: 2px solid gray;
+    border-bottom: 1px solid #e5e5e5e0;
     border-top:none;
     border-left:none;
     border-right:none;
     width:70%;
+
+    font-size:16px;
 }
+
 .sendInfo input {
     padding-left:1rem;
     outline: none;
@@ -123,7 +137,7 @@ margin-right:20px;
     border:none;
     width:fit-content;
     padding:0 2rem;
-    font-family: 'Jose';
+   
     font-size: 16px;
     font-weight: 300;
     line-height: 16px;

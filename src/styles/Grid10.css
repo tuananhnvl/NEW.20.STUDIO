@@ -41,7 +41,7 @@
     display:flex;
    /*  align-items: flex-end; */
     justify-content: center;
-    border: 1px solid green;
+    border: 1px solid #fffff420;
     color:rgb(187, 184, 184);
     font-size: 2rem;
     opacity: 0.3;
@@ -56,11 +56,27 @@
 }
 .step-config  .img {
     overflow: hidden;
+    z-index:5;
+    
+}
+.step-config .img-behind:before {
+    background: rgb(0,0,0,.72) !important;
+}
+.step-config  .img:hover img {
+    transform:scale(1.042) rotate(0.42deg);
+    -webkit-transition: all 420ms cubic-bezier(0.59, 0.32, 0.14, 0.53);
+    transition: all 420ms cubic-bezier(0.59, 0.32, 0.14, 0.53);
 }
 .step-config  img {
     width:100%;
     height:auto;
-  
+    transform:rotate(0);
+    -webkit-transition: all 350ms cubic-bezier(0.59, 0.32, 0.14, 0.53);
+    transition: all 350ms cubic-bezier(0.59, 0.32, 0.14, 0.53);
+}
+.step-config .text {
+    z-index:10;
+    pointer-events: none;
 }
 .step-config .title{
     font-family: NVNValky;

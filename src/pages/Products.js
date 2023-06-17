@@ -123,28 +123,64 @@ export default function Products() {
         }
     };
     useEffect(() => {
-      
+        const listImgBehind = document.querySelectorAll('.step-config .img-behind')
+        const svgAnim = gsap.timeline({
+            ease: "power1.out",
+            scrollTrigger: {
+                trigger: '#svg-tracking',
+                scroller: containerRef.current,
+                //markers: true,
+                scrub: true,
+                start: '-300px top',
+                end: 'bottom bottom',
+                toggleActions: 'play none reverse none'
+            }
+        });
+        //GSAP RUN
         let ctx = gsap.context(() => {
+            //HEADING
             for (let target in animData) {
               let { typeSplit, propsPrev ,propsFire } = animData[target];
               let arrobj = new SplitType(`#${target}`, { types: typeSplit });
-          
-              gsap.fromTo(arrobj[typeSplit],{
-                ...propsPrev,
-              }, {
+              const splitText = gsap.timeline({
+                ease: "power1.out",
                 scrollTrigger: {
-                  trigger: `#${target}`,
-                  scroller: containerRef.current,
-                  //markers: true,
-                  start: 'top 69%',
-                  end: 'bottom bottom',
-                  toggleActions: 'play none none none',
-                },
-                ...propsFire,
-              });
+                    trigger: `#${target}`,
+                    scroller: containerRef.current,
+                   // markers: true,
+                    start: 'top 69%',
+                    end: 'bottom bottom',
+                    toggleActions: 'play none reverse none'
+                }
+              })
+              splitText.fromTo(arrobj[typeSplit],{...propsPrev},{...propsFire})
             }
-          });
-          //return () => ctx.revert();
+            //SVG
+            svgAnim.to('.cls-2',{
+                strokeDasharray: [10, 10],
+                stagger: 0.5
+            })
+            for (let r = 0; r < listImgBehind.length; r++) {
+                const imgBehind = gsap.timeline({
+                    ease: "power1.out",
+                    scrollTrigger: {
+                        trigger: listImgBehind[0].parentNode,
+                        scroller: containerRef.current,
+                        markers: true,
+                        start: 'top 42%',
+                        scrub:true,
+                        end: 'bottom 42%',
+                        toggleActions: 'play none reverse none'
+                    }
+                  })
+                  imgBehind.to(listImgBehind[r],{
+                    yPercent: `-${Math.random()*120 + 50}`
+                  })
+            }
+           
+
+         });
+         return () => ctx.revert();
       }, [containerRef]);
     return (
      
@@ -166,17 +202,16 @@ export default function Products() {
                    
                 </div>
           
-                <div className='products_banner-sub' >
+                <div className='products_banner-sub' id='svg-tracking'>
                     <div className='sub' ><p id='longTextSplit'>Từ nguyên liệu đến thành phẩm. Chúng tôi có thể cung cấp dịch vụ sản xuất thời trang.</p></div>
                     <div className='sub-next'>
-                        <h3>Quy trình làm việc</h3>
+                        <h3 >Quy trình làm việc</h3>
                         <svg data-name="arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143.25 244.55">
-
                             <g id="arrow-svg" data-name="Layer-Main">
                                 <ellipse className="cls-2" cx="71.62" cy="67.12" rx="71.5" ry="67" />
-                                <rect className="cls-1" x="70.28" y="94.21" width=".5" height="150" />
-                                <rect className="cls-1" x="59.75" y="218.43" width=".5" height="30" transform="translate(-147.49 110.79) rotate(-45)" />
-                                <rect className="cls-1" x="80.81" y="218.76" width=".5" height="30" transform="translate(189.04 11.15) rotate(45)" />
+                                <rect className="cls-1 centerLine" x="70.28" y="94.21" width=".5" height="150" />
+                                <rect className="cls-1 leftLine" x="59.75" y="218.43" width=".5" height="30" transform="translate(-147.49 110.79) rotate(-45)" />
+                                <rect className="cls-1 rightLine" x="80.81" y="218.76" width=".5" height="30" transform="translate(189.04 11.15) rotate(45)" />
                             </g>
                         </svg>
                     </div>

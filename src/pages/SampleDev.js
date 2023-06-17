@@ -90,10 +90,10 @@ export default function SampleDev() {
                                 </ul>
                             </div>
                         </div>
-                        <div className='img-behind s2-img1' data-scroll data-scroll-speed="-.2">
+                        <div className='img-behind s2-img1' >
                             <img src={images.sample2behind1} alt='' />
                         </div>
-                        <div className='img-behind s2-img2' data-scroll data-scroll-speed="1">
+                        <div className='img-behind s2-img2' >
                             <img src={images.sample2behind2} alt='' />
                         </div>
                     </div>
@@ -110,7 +110,7 @@ export default function SampleDev() {
                                 Chuyên viên thiết kế mẫu của chúng tôi sẽ tạo ra các mẫu đẹp cho các loại sản phẩm chính như: áo khoác, váy, áo sơ mi, váy chân váy, quần.
                             </div>
                         </div>
-                        <div className='img-behind' data-scroll data-scroll-speed="3">
+                        <div className='img-behind' >
                             <img src={images.sample3behind1} alt='' />
                         </div>
                     </div>

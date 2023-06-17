@@ -5,6 +5,7 @@
   "dependencies": {
     "@react-three/drei": "^9.64.0",
     "@react-three/fiber": "^8.12.0",
+    "@react-three/offscreen": "^0.0.8",
     "babel-plugin-glsl": "^1.0.0",
     "d3-ease": "^3.0.1",
     "glsl-noise": "^0.0.0",
