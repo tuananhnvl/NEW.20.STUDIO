@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import Grid10 from './components/Grid10'
 
 import { Route, Routes, useLocation } from "react-router-dom";
+import './fonts/Marcellus-Regular.ttf';
+
 
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";

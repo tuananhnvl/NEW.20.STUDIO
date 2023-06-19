@@ -1,75 +1,14 @@
-const calculateLayout = useCallback(() => {
-    console.log(':::::::: LOADING TEXTURE')
-  
-    for (let index = 0; index < textures.length; index++) {
-      mapRatio.push({ w: textures[index].source.data.naturalWidth / 1000, h: textures[index].source.data.naturalHeight / 1000 })
-    }
-    let lastMargin = 0.5
-    let countTAMTHOI = 0
-    let marginXGrid = 0.77 
-    let marginYGrid = 0.095
-    let totalmarginW = 0
-    if (textures.length > 49) {
-      for (let c = 0; c < COL_GRID_IMG; c++) {
-        for (let r = 0; r < ROW_GRID_IMG; r++) {
-          if (countTAMTHOI > 50) { return }
-    
-          xChange = r * marginXGrid + mapRatio[countTAMTHOI].w/8
-          totalmarginW += r * marginXGrid
-         
-          if (c == 0) {
-            yChange = 0 
-          } else if (c == 1) {
-            yChange = (mapRatio[countTAMTHOI - 10].h) / 2 
-            + mapRatio[countTAMTHOI].h / 2  
-            + marginYGrid
-          } else if (c == 2) {
-            yChange = (mapRatio[countTAMTHOI - 10].h) 
-            + mapRatio[countTAMTHOI].h / 2             
-            + mapRatio[countTAMTHOI - 20].h / 2 
-            + marginYGrid * 2
-          }
-          else if (c == 3) {
-            yChange = (mapRatio[countTAMTHOI - 10].h) 
-            + mapRatio[countTAMTHOI].h / 2            
-            + mapRatio[countTAMTHOI - 20].h 
-            + mapRatio[countTAMTHOI - 30].h / 2  
-            + marginYGrid * 3
-          }
-          else if (c == 4) {
-            yChange = (mapRatio[countTAMTHOI - 10].h) 
-            + mapRatio[countTAMTHOI].h / 2 
-            + mapRatio[countTAMTHOI - 20].h 
-            + mapRatio[countTAMTHOI - 30].h 
-            + mapRatio[countTAMTHOI - 40].h / 2  
-            + marginYGrid * 4
-          }
-          else {
-            yChange = 7
-          }
-          mapPosGeneral.push({ x: xChange, y: yChange })
-          countTAMTHOI += 1
-        }
-      }
-    }
-    console.log(JSON.stringify(mapPosGeneral))
-    localStorage.setItem('nonamevar',totalmarginW)
-  }, [textures]);
-  const mapPosGeneralSave = [{"x":0.08,"y":0},{"x":0.85,"y":0},{"x":1.62,"y":0},{"x":2.39,"y":0},{"x":3.16,"y":0},{"x":3.93,"y":0},{"x":4.7,"y":0},{"x":5.470000000000001,"y":0},{"x":6.24,"y":0},{"x":7.01,"y":0},{"x":0.08,"y":0.522},{"x":0.85,"y":0.7885},{"x":1.62,"y":0.7085},{"x":2.39,"y":0.522},{"x":3.16,"y":0.98},{"x":3.93,"y":0.6565},{"x":4.7,"y":0.522},{"x":5.470000000000001,"y":0.8414999999999999},{"x":6.24,"y":1.0015},{"x":7.01,"y":0.7885},{"x":0.08,"y":1.044},{"x":0.85,"y":1.7634999999999998},{"x":1.62,"y":1.2305},{"x":2.39,"y":1.257},{"x":3.16,"y":1.7469999999999999},{"x":3.93,"y":1.313},{"x":4.7,"y":1.257},{"x":5.470000000000001,"y":1.6829999999999998},{"x":6.24,"y":2.0564999999999998},{"x":7.01,"y":1.3104999999999998},{"x":0.08,"y":1.8325},{"x":0.85,"y":2.472},{"x":1.62,"y":1.7525},{"x":2.39,"y":2.237},{"x":3.16,"y":2.4035},{"x":3.93,"y":1.835},{"x":4.7,"y":2.0985},{"x":5.470000000000001,"y":2.6845},{"x":6.24,"y":2.8449999999999998},{"x":7.01,"y":1.8325},{"x":0.08,"y":2.8074999999999997},{"x":0.85,"y":2.9939999999999998},{"x":1.62,"y":2.4875},{"x":2.39,"y":3.0039999999999996},{"x":3.16,"y":3.0599999999999996},{"x":3.93,"y":2.57},{"x":4.7,"y":2.9399999999999995},{"x":5.470000000000001,"y":3.7395},{"x":6.24,"y":3.3669999999999995},{"x":7.01,"y":2.621}]
-  useEffect(() => {
-   calculateLayout();
-  }, [calculateLayout]);
-
-
-
-
-
-  const vertexShader = `
-
+const vertexShader = `
+uniform float checkProcess;
 uniform vec2 uOffset;
+uniform vec2 uZoomScale;
+uniform float uProcess;
 varying vec2 vUv;
+uniform float uTime;
+uniform vec2 iResolution;
+uniform vec2 imageBounds;
 uniform float uScroll;
-
+uniform float uTarget;
 //custom == when drag x y , scroll z , mix z to wave function , set uscroll to controls anime
 
 vec3 deformationCurve(vec3 position, vec2 uv, vec2 offset, float wave,float centerPoint,float uScroll) {
@@ -86,16 +25,23 @@ void main() {
   vec3 newPosition = position;
   vec3 newPosition1 = position;
 
-  float angle = uScroll * 3.14159265 / 2.;
- 
+  float angle = (uScroll * 4.20) * 3.14159265 / 2.;
+  //uProcess not use
   // set sin(angle) to cos(angle) = > reveal sin thieu
   float wave = cos(angle); 
   
   float center = cos(length(uv - .5) * 2.101235);
 
-  newPosition = deformationCurve(position,uv,uOffset,wave,center,uScroll);
+  newPosition = deformationCurve(position,uv,uOffset,wave,center,(uScroll * 4.20));
+  vec3 finalPosInAnim =  mix(newPosition,newPosition1,0.5);
 
-  gl_Position = projectionMatrix * modelViewMatrix * vec4( mix(newPosition,newPosition1,0.5), 1.0 );
+
+  vec3 currentPos = position;
+  vec3 newForOnly = vec3(finalPosInAnim.x,finalPosInAnim.y,uTarget);
+  vec3 onlyPosInAnim = mix(currentPos,newForOnly,1.0);
+
+  vec3 twoOp = mix(finalPosInAnim,newForOnly,0.0);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(twoOp, 1.0 );
 
 }
 `
@@ -170,7 +116,7 @@ void main()
   vec2 offset = (rs < ri ? vec2((new.x - s.x) / 2.0, 0.0) : vec2(0.0, (new.y - s.y) / 2.0)) / new;
   vec2 uvd = vUv * s / new + offset;
   // set zoom base uscroll
-  vec2 zUv = (uvd + vec2(0.5, 0.5)) /(zoom + 0.0)  + vec2(0.5, 0.5);
+  vec2 zUv = (uvd - vec2(0.5, 0.5)) /(zoom + 0.0)  + vec2(0.5, 0.5);
 
   vec2 stx = vUv.xy/bv.xy;
     // Normalized pixel coordinates (from 0 to 1)
@@ -210,4 +156,8 @@ void main()
     gl_FragColor = textureFinal;
 
 }
+
 `
+
+const shaderGallery = {'vert': vertexShader, 'frag':fragmentShader}
+export default shaderGallery
