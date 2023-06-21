@@ -24,6 +24,7 @@
     "split-type": "^0.3.3",
     "swiper": "^9.2.0",
     "three": "^0.151.3",
+    "uuid": "^9.0.0",
     "virtual-scroll": "^2.2.1",
     "web-vitals": "^2.1.4"
   },
